@@ -1,0 +1,57 @@
+<top-menu></top-menu>
+
+@if (board) {
+<header class=" text-center">
+  <p class="m-0">{{board.titulo}}</p>
+</header>
+<main [ngStyle]="{'background-color': board.colorTablero}">
+
+  <div class="container-margin">
+
+    @for (lista of listas(); track lista._id; let i = $index) {
+    <div class="container-dragDrop">
+      <div class="d-flex justify-content-between">
+
+        <h4>{{lista.titulo}}</h4>
+        <fa-icon class="iconPencil" [icon]="icons.faPencil"></fa-icon>
+      </div>
+
+
+      <div class="example-list" dndDropzone (dndDragover)="onDragover($event)" (dndDrop)="onDrop($event, i)">
+
+        @for (tarjeta of lista.tarjetas; track tarjeta) {
+        <div class="example-box" (click)="modalDetalleTarjeta(tarjeta!, lista.titulo, lista._id!)" [dndDraggable]="draggable.data" [dndEffectAllowed]="draggable.effectAllowed"
+          [dndDisableIf]="draggable.disable" (dndStart)="onDragStart($event, tarjeta, i)"
+          (dndCopied)="onDraggableCopied($event)" (dndLinked)="onDraggableLinked($event)"
+          (dndMoved)="onDraggableMoved($event)" (dndCanceled)="onDragCanceled($event)"
+          (dndEnd)="onDragEnd($event, tarjeta, i)">{{tarjeta.titulo}}</div>
+        }
+
+      </div>
+      <div class="addTarjeta">
+        <input type="text" [(ngModel)]="titulosTarjetas[i]" (keydown.enter)="onEnterPressed($event, lista._id!, i)"
+          placeholder="Añadir nueva tarjeta">
+      </div>
+    </div>
+
+    }
+
+    <div [ngClass]="{'container-addList': !showAddList, 'd-none': showAddList}">
+      <div class="newList">
+        <div class="example-box listText" (click)="showAddList = true">
+          <p class="m-0 p-0 text-white">+ Añadir una lista</p>
+        </div>
+      </div>
+    </div>
+
+    <div [ngClass]="{'container-dragDrop': showAddList, 'd-none': !showAddList}">
+      <form action="" [formGroup]="formAddList" (submit)="postLista()">
+        <input type="text" formControlName="titulo" placeholder="Añadir una lista">
+        <button type="submit" class="btn btn-primary mt-4 me-2">Añadir lista</button>
+
+        <button class="btn btn-danger mt-4 pe-3" (click)="showAddList = false">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</main>
+}

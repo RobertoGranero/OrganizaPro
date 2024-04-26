@@ -1,0 +1,40 @@
+*{
+    font-family: "Kanit", sans-serif;
+
+}
+.modal-body{
+    background-color: #2b3d4f;
+    color: white;
+}
+
+.btn-close{
+    background-color: white;
+}
+form textarea{
+    color: white;
+    width: 100%;
+    height: 70px;
+    resize: none;
+    background-color: #42576d;
+
+}
+
+form button{
+    color: white;
+    width: 100%;
+    background-color: #42576d;
+    border: 1px solid #53677e;
+}
+
+.checkList{
+    background-color: #53677e;
+    border-radius: 10px;
+}
+
+.btn-show{
+    background-color: #4c7099;
+    color: white;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 3px 5px -1px black;
+}

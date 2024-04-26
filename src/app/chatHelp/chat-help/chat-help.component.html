@@ -1,0 +1,43 @@
+<section class="sectionChatBot d-none d-sm-block" [ngClass]="{'show-chatbot': showChatBot}">
+    <button class="chatbot-toggler" (click)="showChatBot = !showChatBot">
+        <span class="material-symbols-rounded">Open</span>
+        <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="chatbot">
+        <header>
+            <h2>Chatbot</h2>
+            <span class="close-btn material-symbols-outlined">close</span>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hola👋<br>¿En que te puedo ayuda?</p>
+
+            </li>
+            <li class="chat outgoing">
+
+                <form (ngSubmit)="enviarOpcion()" #opcionForm="ngForm" class="opcion-form">
+                    <div class="select-container">
+                        <select name="opcion" [(ngModel)]="opcionSeleccionada" class="form-select">
+                            <option value="espacio">¿Qué es un espacio de trabajo?</option>
+                            <option value="tablero">¿Qué es un tablero?</option>
+                            <option value="lista">¿Qué es una lista?</option>
+                            <option value="tarjeta">¿Qué es una tarjeta?</option>
+                            <option value="fecha">¿Qué día y hora es hoy?</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-success enviar-btn mt-2">Enviar</button>
+                </form>
+                <span class="ms-3"><ngx-avatars name="AA" bgColor="#7EFFAC" fgColor="ffff" size="35" id="dropdownBasic1"
+                    ngbDropdownToggle></ngx-avatars></span>
+            </li>
+            <li [ngClass]="{'chat': mostrarRespuesta, 'incoming': mostrarRespuesta, 'd-none': !mostrarRespuesta}">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>{{resultadoOpcionSeleccionada}}</p>
+
+            </li>
+
+        </ul>
+
+    </div>
+</section>

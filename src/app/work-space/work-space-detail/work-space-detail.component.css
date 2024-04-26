@@ -1,0 +1,118 @@
+* {
+    font-family: "Kanit", sans-serif;
+    color: white;
+}
+
+main {
+    padding-top: 6%;
+    height: 100vh;
+    background-color: #2b3d4f;
+}
+
+hr {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+.sectionInformacionTableros {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+label {
+    font-size: 14px;
+}
+
+.sectionInformacionTableros input,
+select {
+    border: 1px solid;
+    border-radius: 2px;
+    background-color: #212d3a;
+    width: 240px;
+}
+
+
+
+input:focus {
+    outline: none;
+    border: 2px solid;
+
+}
+
+.infoEspacio p {
+    margin-bottom: 0;
+    color: #697683;
+}
+
+.infoEspacio .col-6 {
+    width: 100px;
+}
+
+.infoEspacio .col-12 {
+    width: 200px;
+}
+
+.btn {
+    background-color: #7effac;
+    color: black;
+    font-size: 0.95rem;
+}
+
+.btn-ordenar {
+    border: none;
+    display: flex;
+    padding: 0.75rem 1.5rem;
+    background-color: #488aec;
+    color: #ffffff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+    transition: all 0.6s ease;
+
+}
+
+.btn-ordenar:hover {
+    box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+}
+
+.btn-ordenar:focus,
+.btn-ordenar:active {
+    opacity: 0.85;
+    box-shadow: none;
+}
+
+.insertaTablero {
+    height: 120px;
+    background-color: #212d3a;
+}
+
+.noInserta {
+    height: 120px;
+    transition: all 0.4s ease-in-out;
+}
+
+.noInserta:hover {
+    transform: scale(1.04)
+}
+
+.noInserta p {
+    color: black;
+
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.card-body form input{
+    border: 0;
+    color: black;
+}

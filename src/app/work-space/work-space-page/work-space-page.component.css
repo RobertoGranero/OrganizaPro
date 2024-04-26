@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+/* Import Google font - Poppins */
+
+*{
+  font-family: "Poppins", sans-serif;
+}
+
+main{
+  margin-top: 40px;
+  padding-top: 90px;
+  height: 100vh;
+  background-color: #2b3d4f;
+  
+}
+
+@media (max-width: 945px) {
+  main{
+    padding-top: 9%;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .infoEspacio{
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  main{
+    padding-top: 13%;
+  }
+}
+
+@media (max-width: 667px) {
+  main{
+    height: 120vh;
+  }
+}
+
+
+#v-pills-tab button.active{
+  background-color: #fcffea;
+  color: #2b3d4f;
+}
+
+#v-pills-tab button{
+  color: white;
+}
+
+.accordion-body a, .accordion-button{
+  background-color: #2b3d4f;
+  color: white;
+}
+.accordion-item{
+  background-color: #2b3d4f;
+}
+
+.accordion-button:not(.collapsed)::after{
+  color: white;
+}
+
+.noInserta{
+  border: 2px solid #fcffea;
+  background-color: #212d3a;
+  color: white;
+}
+
+.noInserta:hover{
+  background-color: #fcffea;
+  color: #212d3a;
+  cursor: pointer;
+  border: 2px solid #212d3a;
+
+}
+
+.workSpaceCard{
+  height: 50px;
+  border-bottom: 2px solid #fcffea;
+  transition: all 0.3s;
+  color: #fcffea;
+}
+
+.workSpaceCard:hover{
+  cursor: pointer;
+  background-color: #fcffea;
+  color: #2b3d4f;
+}
+
+.btnDelete{
+  color: #fcffea;
+  border-left: 2px solid #fcffea;
+  border-bottom: 2px solid #fcffea;
+  height: 50px;
+  border-radius: 0px;
+}
+
+.btnDelete:hover{
+  background-color: #fcffea48;
+}
+
+.scroll{
+  height: auto;
+  max-height: 350px;
+}
+
+h5, h3{
+  color: #fcffea;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+
+textarea{
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: #212d3a;
+  color: white;
+  resize: none;
+  text-align: center;
+  width: 25em;
+}
+
+textarea::placeholder{
+  color: white;
+  text-align: center;
+}
+

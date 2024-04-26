@@ -1,0 +1,24 @@
+* {
+    font-family: "Kanit", sans-serif;
+    color: white;
+}
+main{
+    padding-top: 55px;
+    background-color: #2b3d4f;
+    height: 110vh;
+}
+
+b{
+    padding-left: 5px;
+}
+i{
+    color: black;
+    padding-left: 5px;
+}
+a{
+    color: white !important;
+}
+.fc{
+    max-width: 1100px;
+    margin: 40px auto;
+}

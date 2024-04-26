@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h4 class="modal-title">Añadir usuarios al espacio de trabajo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<!--     [formGroup]="formAddWorkSpace" (submit)="addWorkSpace()"
+ -->
+<div class="modal-body">
+    <form class="formSearch">
+        <input type="search" [ngModel]="search()" (ngModelChange)="search.set($event)" name="search" id="search" placeholder="Buscar usuario"><br>
+    </form>
+
+    <hr>
+    @for (usuario of filteredUsarios(); track $index) {
+
+        @if (comprobarUsuarios(usuario)) {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-2">
+                            <ngx-avatars name="{{usuario.nombre}} {{usuario.apellidos}}" bgColor="#7EFFAC" fgColor="black"
+                                id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
+                        </div>
+                        <div class="col-5">
+                            <div class="row">
+                                <p class="m-0">{{usuario.email}}</p>
+                            </div>
+                            <div class="row">
+                                <p class="m-0">{{usuario.nombre}} {{usuario.apellidos}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-5 ">
+                            <button class="btn mt-2 mx-5" (click)="addUsers(usuario)">Invitar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+
+
+
+</div>

@@ -1,0 +1,76 @@
+<top-menu></top-menu>
+
+<main>
+    <div class="container">
+        <div class="row gx-5 d-flex justify-content-center align-items-center text-center">
+
+            <section class="col-6 infoEspacio">
+                @if (workSpaceDetail) {
+                <div class="d-flex justify-content-center align-items-center text-center">
+                    <div class="me-3">
+                        <ngx-avatars name="{{workSpaceDetail.titulo}}" bgColor="#7EFFAC" [round]="false" fgColor="black"
+                            id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
+                    </div>
+                    <div>
+                        <div>
+                            {{workSpaceDetail.titulo}}
+                        </div>
+                        <div>
+                            {{workSpaceDetail.fecha | date: "dd/MM/yyyy, h:mm a"}}
+
+                        </div>
+                    </div>
+                </div>
+                }
+            </section>
+            @if (workSpaceDetail?.creadoPor === user?._id) {
+
+            <section class="col-6">
+                <button class="btn" (click)="addModalUsers()">Invitar a miembros al espacio de trabajo</button>
+
+            </section>
+            }
+        </div>
+    </div>
+    <hr class="d-flex justify-content-center mt-4">
+    <section class="sectionInformacionTableros mt-3">
+        <h5 class="mt-4 mb-3">Tableros</h5>
+        <div class="d-flex justify-content-between align-items-center">
+            <button (click)="ordenarTablero()" class="btn-ordenar">Ordenar por fecha de creacion</button>
+            <form action="">
+                <input type="search" [ngModel]="search()" (ngModelChange)="search.set($event)" name="search" id="search"
+                    placeholder="Buscar">
+            </form>
+        </div>
+
+    </section>
+
+    <section class="listaTableros container mt-5">
+        <div class="row gy-3">
+            <div class="col-12 col-sm-12 col-md-3">
+                <div class="card insertaTablero" (click)="modalTablero()">
+                    <div class="card-body ">
+                        <p class="card-title">Añadir nuevo tablero</p>
+                    </div>
+                </div>
+            </div>
+            @if (filteredTableros()) {
+                @for (tablero of filteredTableros(); track tablero._id) {
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="card noInserta" (contextmenu)="modalOpcionesTablero($event, tablero)" 
+                        [ngStyle]="{'background-color': tablero.colorTablero}" [routerLink]="['/boards/' + tablero._id]"
+                        routerLinkActive="router-link-active">
+                        <div class="card-body ">
+                            <p class="card-text" [ngStyle]="{'color': estaOscuro(tablero.colorTablero) ? 'white' : 'black'}">{{tablero.titulo}}</p>
+                        </div>
+                    </div>
+          
+                </div>
+
+
+                }
+            }
+
+        </div>
+    </section>
+</main>

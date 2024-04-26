@@ -1,0 +1,61 @@
+<section class="d-flex justify-content-center align-items-center">
+    <div class="card pt-5">
+        <div class="card-body p-5 text-center">
+
+            <h4 class="mb-5">Crear una cuenta</h4>
+            <form action="" [formGroup]="formRegister" (submit)="register()" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="form-outline mb-4 col-6">
+                        <input type="text" class="form-control form-control-lg w-100" formControlName="nombre"
+                            placeholder="Introduce tu nombre" [ngClass]="validClasses(nombre, 'is-valid', 'is-invalid')"/>
+                    </div>
+                    <div class="form-outline mb-4 col-6">
+                        <input type="text" class="form-control form-control-lg w-100" formControlName="apellidos" [ngClass]="validClasses(apellidos, 'is-valid', 'is-invalid')"
+                            placeholder="Introduce tus apellidos" />
+                    </div>
+                </div>
+
+    
+                <div class="form-outline mb-4">
+                    <input type="email" class="form-control form-control-lg" formControlName="email"
+                        placeholder="Introduce tu correo electronico" [ngClass]="validClasses(email, 'is-valid', 'is-invalid')"/>
+                </div>
+                <div class="form-outline mb-4">
+                    <!-- <input type="email" class="form-control form-control-lg" formControlName="reEmail"
+                        placeholder="Repite el correo electronico" /> -->
+
+                </div>
+    
+                <div class="form-outline mb-4">
+                    <input type="password" class="form-control form-control-lg d-none"
+                        [ngClass]="{'': !checkedRegister, 'd-none': checkedRegister}" formControlName="password"
+                        [value]="password.value" placeholder="Introduce tu contraseña" />
+                    <input type="text" class="form-control form-control-lg"
+                        [ngClass]="{'': checkedRegister, 'd-none': !checkedRegister}" formControlName="password"
+                        [value]="password.value" placeholder="Introduce tu contraseña visible" />
+                </div>
+
+
+                <div class="form-check d-flex justify-content-start mb-4">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox_id_register"
+                        (change)="checkedRegister === false ? checkedRegister = true : checkedRegister = false " />
+                    <label class="form-check-label ms-3" for="checkbox_id_register"> Remember password </label>
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block w-100" [disabled]="formRegister.invalid">Continuar</button>
+            </form>
+            
+
+            <hr class="my-4">
+            <div googleLogin class="btn">Iniciar sesion</div>
+
+
+        </div>
+    </div>
+</section>
+
+@if (show) {
+    <ngb-toast [delay]="5000" [autohide]="true" (hidden)="close()" class="arribaDerecha bg-danger text-light">
+        Error al iniciar sesion
+    </ngb-toast>
+}

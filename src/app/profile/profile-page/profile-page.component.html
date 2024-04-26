@@ -1,0 +1,95 @@
+<top-menu></top-menu>
+<main>
+
+    <div class="margin-container">
+
+
+
+        <div class="d-flex align-items-center justify-content-between text-white flex-wrap bgSection">
+            <section class="d-flex align-items-center flex-wrap">
+                @if (user) {
+                    <div class="me-3 p-3">
+                        <ngx-avatars name="{{user.nombre}} {{user.apellidos}}" bgColor="#7EFFAC" [round]="true"
+                            fgColor="black" size="80" id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
+                    </div>
+                    <div>
+                        <div>
+                            <h4>{{user.email}}</h4>
+                        </div>
+                        <div>
+                            <h5>{{user.nombre}} {{user.apellidos}}</h5>
+                        </div>
+                    </div>
+                }
+
+            </section>
+            <section class="me-5">
+                <form action="">
+                    <label for="file-upload" class="btn-avatar">
+                        Cambiar avatar
+                    </label>
+                    <input id="file-upload" type="file" />
+                </form>
+            </section>
+        </div>
+
+        <ul ngbNav [animation]="false" #nav="ngbNav" (activeId)="1" class="nav-tabs mt-5 d-flex justify-content-center">
+            <li [ngbNavItem]="1">
+                <button ngbNavLink>Editar perfil</button>
+                <ng-template ngbNavContent>
+                    <div class="text-white">
+                        @if (user) {
+                            <form [formGroup]="formEditProfile" (submit)="editProfile()">
+                                <label class="mt-4" for="Nombre">Nombre</label>
+                                <input class="mb-3" type="text" formControlName="nombre">
+    
+                                <label for="Apellidos">Apellidos</label>
+                                <input class="mb-3" type="text" formControlName="apellidos">
+    
+                                <label for="Correo">Correo electronico</label>
+                                <input class="mb-3" type="email" formControlName="email">
+    
+                                <label for="Biografia">Biografia</label>
+                                <textarea class="mb-3" name="" id="" cols="20" rows="10"
+                                    formControlName="biografia"></textarea>
+    
+                                <div class="text-center">
+                                    <button type="submit" class="btn-submit">Editar informacion</button>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <button ngbNavLink>Editar contraseña</button>
+                <ng-template ngbNavContent>
+                    <div class="text-white">
+                        <form [formGroup]="formEditPassword" (submit)="editPassword()">
+                            <label class="mt-4" for="">Contraseña</label>
+                            <input class="mb-3" type="password" formControlName="password">
+                            <label for="">Repite la contraseña</label>
+                            <input class="mb-3" type="password">
+
+                            <div class="text-center">
+                                <button type="submit" class="btn-submit">Cambiar contraseña</button>
+                            </div>
+                        </form>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+
+
+    </div>
+</main>
+
+@if (show) {
+    <ngb-toast class="arribaDerecha bg-success text-light" [delay]="3000" >
+        Has cambiado correctamente los datos
+    </ngb-toast>
+}

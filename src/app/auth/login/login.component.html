@@ -1,0 +1,44 @@
+<section class="d-flex justify-content-center align-items-center">
+    <div class="card pt-5">
+        <div class="card-body p-5 text-center">
+
+            <h4 class="mb-5">Iniciar sesion para continuar</h4>
+            <form action="" [formGroup]="formLogin" (submit)="login()">
+                <div class="form-outline mb-4">
+                    <input type="email" class="form-control form-control-lg" formControlName="email" [ngClass]="validClasses(email, 'is-valid', 'is-invalid')"
+                        placeholder="Introduce tu correo electronico" />
+
+                </div>
+
+                <div class="form-outline mb-4">
+
+                    <input type="password" class="form-control form-control-lg d-none"
+                        [ngClass]="{'': !checked, 'd-none': checked}" formControlName="password"
+                        [value]="password.value" placeholder="Introduce tu contraseña" />
+                    <input type="text" class="form-control form-control-lg"
+                        [ngClass]="{'': checked, 'd-none': !checked}" formControlName="password"
+                        [value]="password.value" placeholder="Introduce tu contraseña invisible" />
+
+                </div>
+
+                <div class="form-check d-flex justify-content-start mb-4">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox_id_login"
+                        (change)="checked === false ? checked = true : checked = false " />
+                    <label class="form-check-label ms-3" for="checkbox_id_login"> Remember password </label>
+                </div>
+                <button class="btn btn-primary btn-lg btn-block w-100" [disabled]="formLogin.invalid">Continuar</button>
+            </form>
+
+            <hr class="my-4">
+            <p>O continúa con:</p>
+            <div googleLogin class="btn">Iniciar sesion</div>
+        </div>
+    </div>
+</section>
+
+@if (show) {
+    <ngb-toast class="arribaDerecha bg-danger text-light">
+        Error al iniciar sesion
+    </ngb-toast>
+}
+

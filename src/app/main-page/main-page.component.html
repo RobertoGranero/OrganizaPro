@@ -1,0 +1,162 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand me-auto" href="#">Logo</a>
+
+    <div class="offcanvas offcanvas-end vh-100" tabindex="200" id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Logo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+          <li class="nav-item menuLinks">
+            <a class="nav-link mx-lg-2 active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item menuLinks">
+            <a class="nav-link mx-lg-2" href="#flujoDeTrabajo">Flujo de trabajo</a>
+          </li>
+          <li class="nav-item menuLinks">
+            <a class="nav-link mx-lg-2" href="#">Services</a>
+          </li>
+          <li class="nav-item menuLinks">
+            <a class="nav-link mx-lg-2" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <a [routerLink]="['/auth']" class="login-button">Login</a>
+    <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<main class="container-fluid p-0">
+  <!--   <div class="divImagenCirculo">
+    <img src="../../assets/blob-haikei.svg" class="imgCirculo img-fluid">
+  </div> -->
+
+
+  <section class="inicioPagina">
+    <div class="d-flex flex-column justify-content-center align-items-center fs-1">
+      <div class="contenidoInicio">
+        <h1 class="text-center">Transforma tu caos en orden con OrganizaPro</h1>
+        <p class="text-center"> La manera fácil y elegante de manejar tus proyectos</p>
+        <div class="divButton text-center">
+          <a [routerLink]="['/auth']" class="btn">Comenzar</a>
+        </div>
+      </div>
+
+      <div class="atropos my-atropos">
+        <div class="atropos-scale">
+          <div class="atropos-rotate">
+            <div class="atropos-inner">
+              <div class="imagenInicial">
+                <img src="../../assets/imagen-inical.png" class="img-fluid">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="caracteristicasOrganiza d-flex justify-content-center">
+    <p class="text-center">Con OrganizaPro, puedes mejorar la claridad y generar un gran impacto en todas partes al
+      conectar las tareas y los flujos de trabajo con los objetivos de toda la empresa.</p>
+  </section>
+
+  <section class="sectionFlujo" id="flujoDeTrabajo">
+    <div class="container text-center">
+      <h2 class="text-white mb-5">FLUJO DE TRABAJO</h2>
+
+      <div class="row gy-3">
+        <div class="col-sm-12 col-md-5">
+          <article class="card bg-dark h-100">
+            <img src="../../assets/chairs-2181994_640.jpg" height="350px" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-white">Gestión de proyectos</h5>
+              <p class="card-text text-white">Mantenga las tareas en orden, los plazos al día y los miembros del equipo
+                alineados con OrganizaPro.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-sm-12 col-md-7">
+          <article class="card bg-dark h-100">
+            <img src="../../assets/todo-lists-5238324_640.jpg" height="350px" class="card-img-top">
+            <div class="card-body d-flex align-items-center justify-content-center flex-column">
+              <h5 class="card-title text-white">Administración de tareas</h5>
+              <p class="card-text text-white">Utilice OrganizaPro para realizar un seguimiento, gestionar, completar y
+                unir tareas como las piezas de un rompecabezas, y hacer que los proyectos de su equipo sean siempre un
+                éxito coherente.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="row gy-3 mt-1">
+        <div class="col-sm-12 col-md-6">
+          <article class="card bg-dark h-100">
+            <img src="../../assets/meeting-594091_640.jpg" height="350px" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-white">Lluvia de ideas</h5>
+              <p class="card-text text-white">Libera la creatividad de tu equipo y mantén las ideas visibles,
+                colaborativas y procesables.</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <article class="card bg-dark h-100">
+            <img src="../../assets/meeting-594091_640.jpg" height="350px" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-white">Centro de recursos</h5>
+              <p class="card-text text-white">Ahorre tiempo con un centro bien diseñado que ayude a los equipos a
+                encontrar información fácil y rápidamente.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="row gy-3 mt-1">
+        <div class="col-sm-12 col-md-5">
+          <article class="card bg-dark h-100">
+            <img src="../../assets/job-5382501_640.jpg" height="350px" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-white">Reuniones</h5>
+              <p class="card-text text-white">Capacite las reuniones de su equipo para que sean más productivas,
+                empoderadoras y, nos atrevemos a decir, divertidas.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-sm-12 col-md-7">
+          <article class="card bg-dark h-100">
+            <img src="../../assets/plans-1867745_640.jpg" height="350px" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-white">Inducción</h5>
+              <p class="card-text text-white">La incorporación a una nueva empresa o proyecto es muy sencilla con el
+                diseño visual de tareas pendientes y recursos de OrganizaPro.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="explicacionOrganizaPro">
+    
+  </section>
+
+  
+</main>
+
+<footer class="bg-dark">
+  <span class="text-light">© 2024 OrganizaPro. Todos los derechos reservados.</span>
+</footer>
