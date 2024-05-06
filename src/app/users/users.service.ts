@@ -12,13 +12,14 @@ export class UsersService {
     #authUrl = 'auth';
     #espacioDeTrabajoUrl = 'espacioDeTrabajo';
 
-    idUsuarioLogueado(): Observable<User> {
+    getUsuarioLogueado(): Observable<User> {
         return this.#http
             .get<User>(`${this.#authUrl}/me`)
             .pipe(map((result) => result));
     }
 
     getUsuarios(): Observable<User[]> {
+        console.log("aaa")
         return this.#http
             .get<User[]>(`${this.#authUrl}/usuarios`)
             .pipe(map((result) => result));

@@ -1,9 +1,7 @@
 import {
     Component,
-    ElementRef,
     Input,
     OnInit,
-    ViewChild,
     WritableSignal,
     computed,
     inject,
@@ -17,10 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Tablero } from '../../interfaces/tablero-interfaces';
 import {
-    NgbModal,
-    NgbPopover,
-    NgbPopoverConfig,
-    NgbPopoverModule,
+    NgbModal, NgbTooltipModule,
+
 } from '@ng-bootstrap/ng-bootstrap';
 import { AddUsersModalComponent } from '../../modals/add-users-modal/add-users-modal.component';
 import { boardsService } from '../../services/boards-service';
@@ -29,7 +25,8 @@ import { UsersService } from '../../users/users.service';
 import { User } from '../../auth/interfaces/user';
 import { AvatarModule } from 'ngx-avatars';
 import { OptionsTableroModalComponent } from '../../modals/options-tablero-modal/options-tablero-modal.component';
-import { m } from '@fullcalendar/core/internal-common';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'work-space-detail',
@@ -41,7 +38,8 @@ import { m } from '@fullcalendar/core/internal-common';
         RouterLink,
         FormsModule,
         AvatarModule,
-        NgbPopoverModule,
+        FontAwesomeModule,
+        NgbTooltipModule
     ],
     templateUrl: './work-space-detail.component.html',
     styleUrl: './work-space-detail.component.css',
@@ -56,6 +54,7 @@ export class WorkSpaceDetailComponent implements OnInit {
     listaTableros: WritableSignal<Tablero[]> = signal([]);
     #modalService = inject(NgbModal);
     user?: User;
+    icons = { faCircleInfo }
 
     ngOnInit(): void {
         this.getWorkSpaceId();
@@ -72,7 +71,7 @@ export class WorkSpaceDetailComponent implements OnInit {
     }
 
     userLogged() {
-        this.#UserService.idUsuarioLogueado().subscribe({
+        this.#UserService.getUsuarioLogueado().subscribe({
             next: (userInfo) => {
                 this.user = userInfo;
             },
@@ -139,5 +138,10 @@ export class WorkSpaceDetailComponent implements OnInit {
             centered: true,
         });
         modalRef.componentInstance.tablero = tablero;
+
+        modalRef.result.then((result: Tablero) => {
+            const listaFiltrada = this.listaTableros().filter((resp) => resp._id != result._id)
+            this.listaTableros.set(listaFiltrada)
+        });
     }
 }

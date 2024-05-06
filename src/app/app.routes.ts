@@ -18,6 +18,15 @@ export const routes: Routes = [
         import('./work-space/routes').then((m) => m.workSpaceRoutes),
     },
     {
+        path: 'timer', canActivate: [loginActivateGuard],
+        loadComponent: () => import('./timer-page/timer-page.component').then((m) => m.TimerPageComponent),
+
+    },
+    {
+        path: 'calendario/:id',
+        loadComponent: () => import('./calendar-page/calendar-page.component').then((m) => m.CalendarPageComponent),
+    },
+    {
         path: 'boards', canActivate: [loginActivateGuard],
         loadChildren: () =>
         import('./boards/routes').then((m) => m.boardsRoutes),

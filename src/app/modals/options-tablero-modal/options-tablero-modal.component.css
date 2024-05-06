@@ -1,0 +1,25 @@
+form input{
+    width: 50%;
+}
+
+.modal-body{
+    background-color: #F5F5F5;
+}
+
+.editButton{
+    background-color: #457AE5;
+    border: 0;
+    padding: 10px;
+    width: 30%;
+    border-radius: 2px;
+    font-weight: 500;
+}
+.deleteButton{
+    background-color: #E73048;
+    border: 0;
+    padding: 10px;
+    width: 30%;
+    border-radius: 2px;
+    font-weight: 500;
+
+}

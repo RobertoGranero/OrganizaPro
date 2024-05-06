@@ -18,5 +18,13 @@ export class listService {
     postListas(infoLista: Lista): Observable<Lista>{
         return this.#http.post<Lista>(`${this.#listasUrl}`, infoLista).pipe(map((result) => result))
     }
+
+    putTituloLista(id: string, editLista: string): Observable<void>{
+        const tituloInfo = {
+            titulo: editLista
+        }
+        return this.#http.put<void>(`${this.#listasUrl}/${id}/tituloLista`, tituloInfo).pipe(map((result) => result))
+
+    }
     
 }

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { CheckList, Tarjeta } from '../boards/interfaces/lista-interfaces';
+import { CheckList, Comentarios, Tarjeta } from '../boards/interfaces/lista-interfaces';
 
 
 @Injectable({
@@ -15,6 +15,10 @@ export class tarjetaService {
     postTarjetas(id: string, infoLista: Tarjeta): Observable<Tarjeta>{
         return this.#http.post<Tarjeta>(`${this.#tarjetasUrl}/${id}/tarjetas`, infoLista).pipe(map((result) => result))
     }
+    deleteTarjeta(id: string, idTarjeta: string): Observable<Number>{
+        return this.#http.delete<Number>(`${this.#tarjetasUrl}/${id}/tarjeta/${idTarjeta}/deleteTarjeta`).pipe(map((result) => result))
+    }
+
     cambiarTarjetaDeLista(id: string, tarjeta: Tarjeta): Observable<Tarjeta>{
         return this.#http.post<Tarjeta>(`${this.#tarjetasUrl}/${id}/nuevaTarjetaLista`, tarjeta).pipe(map((result) => result))
     }
@@ -26,11 +30,34 @@ export class tarjetaService {
         return this.#http.post<CheckList>(`${this.#tarjetasUrl}/${id}/checkList/${idTarjeta}`, checkList).pipe(map((result) => result))
     }
 
-    addDescripcion(id: string, descripcion: string, idTarjeta: string): Observable<Tarjeta>{
-        const descripcionEdit = {
-            descripcion: descripcion
+    getCheckListDelUsuario(idUsuario: string): Observable<CheckList[]>{
+        return this.#http.get<CheckList[]>(`${this.#tarjetasUrl}/checkList/${idUsuario}`).pipe(map((result) => result))
+    }
+
+    postCheck(id: string, idTarjeta: string, idCheck: string, check: boolean): Observable<Tarjeta>{
+        const checkInfo = {
+            check: check
         }
-        return this.#http.put<Tarjeta>(`${this.#tarjetasUrl}/${id}/descripcion/${idTarjeta}`, descripcionEdit).pipe(map((result) => result))
+        return this.#http.post<Tarjeta>(`${this.#tarjetasUrl}/${id}/check/${idTarjeta}/${idCheck}/addCheck`, checkInfo).pipe(map((result) => result))
+
+    }
+
+    deleteCheck(id: string, idTarjeta: string, idCheck: string): Observable<Tarjeta>{
+        return this.#http.delete<Tarjeta>(`${this.#tarjetasUrl}/${id}/check/${idTarjeta}/${idCheck}/deleteCheck`).pipe(map((result) => result))
+
+    }
+
+    editTarjeta(id: string, tarjeta: Tarjeta, idTarjeta: string): Observable<Tarjeta>{
+
+        return this.#http.put<Tarjeta>(`${this.#tarjetasUrl}/${id}/edit/${idTarjeta}`, tarjeta).pipe(map((result) => result))
+    }
+
+    getComentarios(id: string, idTarjeta: string): Observable<Comentarios[]>{
+        return this.#http.get<Comentarios[]>(`${this.#tarjetasUrl}/${id}/getComentarios/${idTarjeta}`).pipe(map((result) => result))
+    }
+
+    addComentarios(id: string, comentario: Comentarios, idTarjeta: string): Observable<Comentarios>{
+        return this.#http.post<Comentarios>(`${this.#tarjetasUrl}/${id}/comentarios/${idTarjeta}`, comentario).pipe(map((result) => result))
     }
 
 /*     checkTarea(id: string, idTarjeta: string, idCheckList: string, check: boolean): Observable<CheckList>{

@@ -9,7 +9,7 @@ main{
   margin-top: 40px;
   padding-top: 90px;
   height: 100vh;
-  background-color: #2b3d4f;
+  background-color: #2B3D4F;
   
 }
 
@@ -66,12 +66,17 @@ main{
   color: white;
 }
 
-.noInserta:hover{
+.noInserta:hover:not(.colorCard){
   background-color: #fcffea;
   color: #212d3a;
   cursor: pointer;
   border: 2px solid #212d3a;
 
+}
+
+.colorCard:hover{
+  cursor: pointer;
+  border: 2px solid black;
 }
 
 .workSpaceCard{
@@ -85,6 +90,7 @@ main{
   cursor: pointer;
   background-color: #fcffea;
   color: #2b3d4f;
+  border-radius: 0;
 }
 
 .btnDelete{
@@ -126,3 +132,13 @@ textarea::placeholder{
   text-align: center;
 }
 
+li a{
+  text-decoration: none;
+
+}
+
+li a:hover{
+  cursor: pointer;
+  text-decoration: underline;
+
+}

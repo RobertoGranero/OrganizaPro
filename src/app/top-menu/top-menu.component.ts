@@ -10,11 +10,12 @@ import { faMessage } from '@fortawesome/free-regular-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { AuthService } from '../auth/services/auth.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { AvatarModule } from 'ngx-avatars';
 import { User } from '../auth/interfaces/user';
 import { UsersService } from '../users/users.service';
+import { ProfileService } from '../profile/services/profile.service';
 
 @Component({
     selector: 'top-menu',
@@ -25,14 +26,13 @@ import { UsersService } from '../users/users.service';
         RouterLink,
         NgbDropdownModule,
         AvatarModule,
+        RouterLinkActive
     ],
     templateUrl: './top-menu.component.html',
     styleUrl: './top-menu.component.css',
 })
 export class TopMenuComponent implements OnInit{
-    ngOnInit(): void {
-        this.userLogged()
-    }
+
 
     #UserService = inject(UsersService);
 
@@ -48,19 +48,34 @@ export class TopMenuComponent implements OnInit{
         faGear,
         faArrowRightFromBracket,
     };
-    user!: User;
+    user?: User;
 
     #authService = inject(AuthService);
-    logged = computed(() => this.#authService.logged());
+    #profileService = inject(ProfileService);
 
+    logged = computed(() => this.#authService.logged());
+    ngOnInit(): void {
+        
+        this.userLogged()
+    }
     logout() {
         this.#authService.logout();
     }
 
     userLogged() {
-        this.#UserService.idUsuarioLogueado().subscribe({
+        this.#UserService.getUsuarioLogueado().subscribe({
             next: (userInfo) => {
                 this.user = userInfo
+                this.getAvatar()
+
+            },
+        });
+    }
+
+    getAvatar() {
+        this.#profileService.getUser(this.user?._id!).subscribe({
+            next: (value) => {
+                this.user!.avatar = value.avatar;
             },
         });
     }

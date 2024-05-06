@@ -10,21 +10,43 @@
 
     @for (lista of listas(); track lista._id; let i = $index) {
     <div class="container-dragDrop">
-      <div class="d-flex justify-content-between">
-
-        <h4>{{lista.titulo}}</h4>
-        <fa-icon class="iconPencil" [icon]="icons.faPencil"></fa-icon>
+      <div class="d-flex justify-content-between mb-2">
+        <input type="text" class="inputLista" value="{{lista.titulo}}" #tituloLista>
+        <button (click)="putTituloLista(lista._id!)" class="iconPencil" placement="top"
+          ngbTooltip="Edita el titulo"><fa-icon [icon]="icons.faPencil"></fa-icon></button>
       </div>
 
 
       <div class="example-list" dndDropzone (dndDragover)="onDragover($event)" (dndDrop)="onDrop($event, i)">
 
         @for (tarjeta of lista.tarjetas; track tarjeta) {
-        <div class="example-box" (click)="modalDetalleTarjeta(tarjeta!, lista.titulo, lista._id!)" [dndDraggable]="draggable.data" [dndEffectAllowed]="draggable.effectAllowed"
-          [dndDisableIf]="draggable.disable" (dndStart)="onDragStart($event, tarjeta, i)"
-          (dndCopied)="onDraggableCopied($event)" (dndLinked)="onDraggableLinked($event)"
-          (dndMoved)="onDraggableMoved($event)" (dndCanceled)="onDragCanceled($event)"
-          (dndEnd)="onDragEnd($event, tarjeta, i)">{{tarjeta.titulo}}</div>
+        <div class="example-box"
+          (click)="modalDetalleTarjeta(tarjeta!, lista.titulo, lista._id!)" [dndDraggable]="draggable.data"
+          [dndEffectAllowed]="draggable.effectAllowed" [dndDisableIf]="draggable.disable"
+          (dndStart)="onDragStart($event, tarjeta, i)" (dndCopied)="onDraggableCopied($event)"
+          (dndLinked)="onDraggableLinked($event)" (dndMoved)="onDraggableMoved($event)"
+          (dndCanceled)="onDragCanceled($event)" (dndEnd)="onDragEnd($event, tarjeta, i)">
+
+          {{tarjeta.titulo}}
+
+        </div>
+        <div class="infoTarjeta d-flex justify-content-between">
+          <div class="prioridadDiv ms-2"
+            [ngClass]="{'prioridadUrgente': tarjeta.prioridad == 'Urgente', 'prioridadAlta': tarjeta.prioridad == 'Alta', 
+            'prioridadNormal': tarjeta.prioridad == 'Normal', 'prioridadBaja': tarjeta.prioridad == 'Baja', 
+            'prioridadNinguna': tarjeta.prioridad == 'Ninguna'}">
+              {{tarjeta.prioridad}}
+          </div>
+
+          <div>
+            {{tarjeta.lengthEstaHecho}}/{{tarjeta.checkList?.length}} <fa-icon [icon]="icons.faListCheck"></fa-icon>
+          </div>
+          <div class="me-2">
+            {{tarjeta.comentarios?.length}} <fa-icon [icon]="icons.faComment"></fa-icon>
+          </div>
+
+        </div>
+
         }
 
       </div>

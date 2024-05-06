@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #7EFFAC;
+    background: #f9c947;
     transition: all 0.2s ease;
 }
 
@@ -44,7 +44,7 @@
     bottom: 90px;
     width: 420px;
     background: #fff;
-    border: 1px solid #406689;
+    border: 1px solid #f9c947;
     border-radius: 18px;
     overflow: hidden;
     opacity: 0;
@@ -66,8 +66,8 @@
     padding: 16px 0;
     position: relative;
     text-align: center;
-    color: #fff;
-    background: #2f475d;
+    color: black;
+    background: #f9c947;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -189,6 +189,11 @@ a {
     visibility: visible;
 }
 
+.enviar-btn{
+    background-color: #1abc9c;
+    color: black;
+    border: 0;
+}
 @media (max-width: 490px) {
     .chatbot-toggler {
         right: 20px;

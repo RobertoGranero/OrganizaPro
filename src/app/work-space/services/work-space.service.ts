@@ -12,7 +12,6 @@ import { Tablero } from '../../interfaces/tablero-interfaces';
 export class WorkSpaceService {
     #http = inject(HttpClient);
     #workSpaceUrl = 'espacioDeTrabajo';
-    #tablerosUrl = 'tableros';
     #router = inject(Router);
 
     addEspacioDeTrabjo(userInfo: WorkSpace): Observable<WorkSpace> {
@@ -32,6 +31,9 @@ export class WorkSpaceService {
     }
     deleteEspacioDeTrabajo(id: string): Observable<void> {
         return this.#http.delete<void>(`${this.#workSpaceUrl}/${id}`)
+    }
+    getTablerosDeEspaciosDeTrabajos(id: string) : Observable<Tablero[]>{
+        return this.#http.get<Tablero[]>(`${this.#workSpaceUrl}/creador/${id}/tableros`).pipe(map((result) => result))
     }
 
 }

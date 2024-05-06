@@ -12,6 +12,14 @@ h4, label, p{
     color: white;
 
 }
+
+.btn{
+    background-color: #457AE5;
+}
+
+.divOrganiza img{
+    width: 50px;
+}
 .card {
     background-color: #2b3d4f;
     border: 0;

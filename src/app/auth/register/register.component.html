@@ -1,7 +1,10 @@
 <section class="d-flex justify-content-center align-items-center">
     <div class="card pt-5">
         <div class="card-body p-5 text-center">
-
+            <div class="d-flex justify-content-center align-items-center divOrganiza">
+                <img src="../../../assets/logo.png" alt="">
+                <h3 class="text-white m-0">OrganizaPro</h3>
+            </div>
             <h4 class="mb-5">Crear una cuenta</h4>
             <form action="" [formGroup]="formRegister" (submit)="register()" enctype="multipart/form-data">
                 <div class="row">
@@ -42,12 +45,12 @@
                     <label class="form-check-label ms-3" for="checkbox_id_register"> Remember password </label>
                 </div>
 
-                <button class="btn btn-primary btn-lg btn-block w-100" [disabled]="formRegister.invalid">Continuar</button>
+                <button class="btn btn-lg btn-block w-100" [disabled]="formRegister.invalid">Continuar</button>
             </form>
             
 
             <hr class="my-4">
-            <div googleLogin class="btn">Iniciar sesion</div>
+            <div googleLogin class="d-flex justify-content-center">Iniciar sesion</div>
 
 
         </div>

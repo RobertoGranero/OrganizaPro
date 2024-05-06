@@ -96,13 +96,24 @@ input:focus {
 
 .noInserta {
     height: 120px;
-    transition: all 0.4s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+
 }
 
 .noInserta:hover {
-    transform: scale(1.04)
+    opacity: 0.9;
 }
 
+
+fa-icon{
+    transition: all 0.2s ease-in-out;
+
+}
+
+fa-icon:hover{
+    transform: scale(1.1);
+}
 .noInserta p {
     color: black;
 

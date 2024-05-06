@@ -22,8 +22,11 @@ export class ProfileService {
     return this.#http.put<void>(`${this.#profileAuth}/password/${id}`, passwordInfo);
   }
 
-  /*updateAvatar(dataUpdate: UserAvatarEdit) : Observable<void>{
-    return this.#http.put<void>(`${this.#profileAuth}/me/avatar`, dataUpdate);
-  } */
+  updateAvatar(id: string, avatar: string) : Observable<void>{
+    const avatarInfo = {
+      avatar: avatar
+    }
+    return this.#http.post<void>(`${this.#profileAuth}/avatar/${id}`, avatarInfo).pipe(map((result) => result));
+  }
 
 }

@@ -28,9 +28,9 @@
                 <div ngbAccordionBody>
                   <ng-template>
                     <ul>
-                      <li><a href="">Tableros</a></li>
-                      <li><a href="">Editar espacio de trabajo</a></li>
-                      <li><a href="">Añadir miembros</a></li>
+                      <li><a [routerLink]="['/work-space/' + workSpace._id]">Tableros</a></li>
+                      <li><a >Editar espacio de trabajo</a></li>
+                      <li><a (click)="addMiembros(workSpace._id!, workSpace)">Añadir miembros</a></li>
                     </ul>
                   </ng-template>
                 </div>
@@ -44,35 +44,40 @@
         <div class="tab-content" id="v-pills-tabContent">
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <h3>Tableros creados recientemente</h3>
-            <!-- Cambiar esto -->
             <div class="row gy-2">
-              @for (workSpace of workSpace(); track $index) {
-                @if (creadoEstaSemana(workSpace.fecha!)) {
-                <div class="col-4">
-                  <div class="card noInserta">
-                    <div class="card-body ">
-                      <p class="card-title">{{workSpace.titulo}}</p>
+              @if (tableros()) {
+                @for (tablero of tableros(); track $index) {
+                  @if (creadoEstaSemana(tablero.fecha!)) {
+                  <div class="col-4">
+                    <div class="card noInserta colorCard" [ngStyle]="{'background-color': tablero.colorTablero}">
+                      <div class="card-body ">
+                        <p class="card-title">{{tablero.titulo}}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  }
                 }
               }
+
             </div>
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
             <h3>Espacios de trabajo creados recientemente</h3>
             <div class="row gy-2">
-              @for (workSpace of workSpace(); track $index) {
-              @if (creadoEstaSemana(workSpace.fecha!)) {
-              <div class="col-4">
-                <div class="card noInserta" [routerLink]="['/work-space/' + workSpace._id]">
-                  <div class="card-body ">
-                    <p class="card-title">{{workSpace.titulo}}</p>
+              @if (workSpace()) {
+                @for (workSpace of workSpace(); track $index) {
+                  @if (creadoEstaSemana(workSpace.fecha!)) {
+                  <div class="col-4">
+                    <div class="card noInserta" [routerLink]="['/work-space/' + workSpace._id]">
+                      <div class="card-body ">
+                        <p class="card-title">{{workSpace.titulo}}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                  }
+                  }
               }
-              }
+
 
             </div>
           </div>
@@ -135,7 +140,7 @@
           }
 
 
-          <div class="row mt-3">
+          <div class="row mt-5">
             <div class="col-12 text-center">
               <textarea [(ngModel)]="texto" (keydown.enter)="onEnterPressed($event)"
                 placeholder="Añadir nuevo espacio de trabajo"></textarea>

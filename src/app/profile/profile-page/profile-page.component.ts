@@ -4,6 +4,7 @@ import { ProfileService } from '../services/profile.service';
 import { User, UserPasswordEdit, UserProfileEdit } from '../../auth/interfaces/user';
 import { AvatarModule } from 'ngx-avatars';
 import {
+    FormsModule,
     NonNullableFormBuilder,
     ReactiveFormsModule,
     Validators,
@@ -18,7 +19,8 @@ import { NgbNavModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
         AvatarModule,
         ReactiveFormsModule,
         NgbNavModule,
-        NgbToastModule
+        NgbToastModule,
+        FormsModule
     ],
     templateUrl: './profile-page.component.html',
     styleUrl: './profile-page.component.css',
@@ -31,6 +33,7 @@ export class ProfilePageComponent implements OnInit {
     user!: User;
     #fb = inject(NonNullableFormBuilder);
 
+    avatarPerfil: string = "";
     nombre = this.#fb.control('', [Validators.required, Validators.email]);
     apellidos = this.#fb.control('', [Validators.required]);
     email = this.#fb.control('', [Validators.required]);
@@ -95,5 +98,23 @@ export class ProfilePageComponent implements OnInit {
             next: (value) => {
             }
         })
+    }
+
+    changeImage(event: Event) {
+        console.log(this.avatarPerfil)
+        const fileInput = event.target as HTMLInputElement;
+        if (!fileInput.files || fileInput.files.length === 0) {
+            return;
+        }
+        const reader: FileReader = new FileReader();
+        reader.readAsDataURL(fileInput.files[0]);
+        reader.addEventListener('loadend', () => {
+            const avatarPerfilString = reader.result as string;
+            console.log(avatarPerfilString)
+            this.#profileService.updateAvatar(this.user._id!, avatarPerfilString).subscribe({
+                next: () => {
+                },
+            });
+        });
     }
 }

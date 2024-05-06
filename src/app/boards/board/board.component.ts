@@ -1,7 +1,9 @@
 import {
     Component,
+    ElementRef,
     Input,
     OnInit,
+    ViewChild,
     WritableSignal,
     inject,
     signal,
@@ -20,11 +22,10 @@ import {
     Validators,
 } from '@angular/forms';
 import { DndDropEvent, DndModule, EffectAllowed } from 'ngx-drag-drop';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailTarjetaModalComponent } from '../../modals/detail-tarjeta-modal/detail-tarjeta-modal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { WorkSpaceService } from '../../work-space/services/work-space.service';
+import { faListCheck, faPencil, faComment } from '@fortawesome/free-solid-svg-icons';
 import { tarjetaService } from '../../services/tarjetas-service';
 
 @Component({
@@ -36,19 +37,21 @@ import { tarjetaService } from '../../services/tarjetas-service';
         ReactiveFormsModule,
         FormsModule,
         DndModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        NgbTooltipModule
     ],
     templateUrl: './board.component.html',
     styleUrl: './board.component.css',
 })
 export class BoardComponent implements OnInit {
+
     @Input() id!: string;
     #boardService = inject(boardsService);
-    #workSpace = inject(WorkSpaceService);
     board?: Tablero;
     listas: WritableSignal<Lista[]> = signal([]);
     titulosTarjetas: string[] = [];
-
+    checkCountTrue: number = 0;
+    @ViewChild('tituloLista') tituloLista!: ElementRef;
 
     showAddList: boolean = false;
     showAddCard: boolean = false;
@@ -62,8 +65,10 @@ export class BoardComponent implements OnInit {
     formAddList = this.#fb.group({
         titulo: this.titulo,
     });
+
+
     #modalService = inject(NgbModal);
-    icons = {faPencil}
+    icons = {faPencil, faListCheck, faComment}
 
     draggable = {
         data: 'myDragData',
@@ -78,7 +83,6 @@ export class BoardComponent implements OnInit {
         this.titulosTarjetas = new Array(this.listas().length).fill('');
         this.getTablero();
         this.getListas();
-        //this.getTarjetas();
     }
 
     getTablero() {
@@ -93,6 +97,8 @@ export class BoardComponent implements OnInit {
         this.#listaService.getListas(this.id).subscribe({
             next: (result) => {
                 this.listas.set(result);
+
+
             },
         });
     }
@@ -130,16 +136,6 @@ export class BoardComponent implements OnInit {
             },
         });
     }
-
-    /*     getTarjetas() {
-        this.#tarjetaService.getTarjetas(this.id).subscribe({
-            next: (result) => {
-                this.tarjetas.set(result);
-            },
-        });
-    } */
-
-
 
     onDragStart(event: DragEvent, draggedObject: Tarjeta, indexLista: number) {
         const index = this.listas()[indexLista].tarjetas.findIndex(
@@ -197,6 +193,16 @@ export class BoardComponent implements OnInit {
         
     }
 
+    putTituloLista(idLista: string){
+        console.log(this.tituloLista.nativeElement.value)
+
+        this.#listaService.putTituloLista(idLista, this.tituloLista.nativeElement.value).subscribe({
+            next: (resp) => {
+            }
+        })
+    }
+
+
     modalDetalleTarjeta(tarjeta: Tarjeta, listaTitulo: string, idLista: string) {
         const modalRef = this.#modalService.open(DetailTarjetaModalComponent, {
             centered: true,
@@ -204,7 +210,14 @@ export class BoardComponent implements OnInit {
         modalRef.componentInstance.tarjeta = tarjeta;
         modalRef.componentInstance.listaTitulo = listaTitulo;
         modalRef.componentInstance.idLista = idLista;
+        modalRef.componentInstance.idEspacioTrabajo = this.board?.espacioTrabajo;
 
+        modalRef.result.then((resp) => {
+            this.listas().forEach((resultado) => {
+                resultado.tarjetas.splice(resp, 1)
+            })
+        })
 
     }
+
 }

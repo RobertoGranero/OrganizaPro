@@ -9,8 +9,15 @@
             <section class="d-flex align-items-center flex-wrap">
                 @if (user) {
                     <div class="me-3 p-3">
-                        <ngx-avatars name="{{user.nombre}} {{user.apellidos}}" bgColor="#7EFFAC" [round]="true"
+                        @if (user.avatar) {
+                            <ngx-avatars src="{{user.avatar}}" [round]="true"
                             fgColor="black" size="80" id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
+                        }
+                        @else {
+                            <ngx-avatars name="{{user.nombre}} {{user.apellidos}}" bgColor="#7EFFAC" [round]="true"
+                            fgColor="black" size="80" id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
+                        }
+
                     </div>
                     <div>
                         <div>
@@ -28,7 +35,7 @@
                     <label for="file-upload" class="btn-avatar">
                         Cambiar avatar
                     </label>
-                    <input id="file-upload" type="file" />
+                    <input id="file-upload" name="avatar" type="file" [(ngModel)]="avatarPerfil!" (change)="changeImage($event)"/>
                 </form>
             </section>
         </div>

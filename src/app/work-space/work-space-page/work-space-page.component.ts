@@ -11,6 +11,8 @@ import { NgbAccordionModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
 import { boardsService } from '../../services/boards-service';
 import { ChatHelpComponent } from '../../chatHelp/chat-help/chat-help.component';
+import { Tablero } from '../../interfaces/tablero-interfaces';
+import { AddUsersModalComponent } from '../../modals/add-users-modal/add-users-modal.component';
 
 
 
@@ -34,20 +36,21 @@ export class WorkSpacePageComponent implements OnInit{
     panelOpenState = false;
     #UsersService = inject(UsersService)
     #WorkSpaceService = inject(WorkSpaceService)
+    #modalService = inject(NgbModal);
     user!: User;
     workSpace: WritableSignal<WorkSpace[]> = signal([]);
     workSpaceMiembros: WritableSignal<WorkSpace[]> = signal([]);
-
+    tableros: WritableSignal<Tablero[]> = signal([]);
     texto = "";
-    #WorkService = inject(WorkSpaceService);
 
     ngOnInit(): void {
-        this.#UsersService.idUsuarioLogueado().subscribe({
+        this.#UsersService.getUsuarioLogueado().subscribe({
             next: (userInfo) => {
                 this.user = userInfo;
                 console.log(this.user)
                 this.getEspaciosDeTrabajo(userInfo._id!)
                 this.getEspaciosDeTrabajoMiembros(userInfo._id!)
+                this.getTablerosCreadosRecientemente(userInfo._id!)
             }
         })
     }
@@ -68,11 +71,19 @@ export class WorkSpacePageComponent implements OnInit{
         })
     }
 
+    getTablerosCreadosRecientemente(id: string){
+        this.#WorkSpaceService.getTablerosDeEspaciosDeTrabajos(id).subscribe({
+            next: (tableroInfo) => {                
+                this.tableros.set(tableroInfo);
+            }
+        })
+    }
 
     deleteWorkSpace(workSpace: WorkSpace){
-        this.#WorkService.deleteEspacioDeTrabajo(workSpace._id!).subscribe({
+        this.#WorkSpaceService.deleteEspacioDeTrabajo(workSpace._id!).subscribe({
             next: () => {
                 this.workSpace.set(this.workSpace().filter((p) => p !== workSpace));
+                this.tableros.set(this.tableros().filter((p) => p.espacioTrabajo !== workSpace._id))
 
             }
         })
@@ -87,7 +98,7 @@ export class WorkSpacePageComponent implements OnInit{
 
         };
         
-        this.#WorkService.addEspacioDeTrabjo(workSpaceInfo).subscribe({
+        this.#WorkSpaceService.addEspacioDeTrabjo(workSpaceInfo).subscribe({
             next: (result) => {
                 this.workSpace().push(result);
                 event.preventDefault();
@@ -106,6 +117,17 @@ export class WorkSpacePageComponent implements OnInit{
         const lastDayOfWeek = new Date(firstDayOfWeek);
         lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6);
         return date >= firstDayOfWeek && date <= lastDayOfWeek;
+    }
+
+    addMiembros(idEspacioTrabajo: string, espacioDeTrabajoDetalle: WorkSpace){
+        const modalRef = this.#modalService.open(AddUsersModalComponent, {
+            centered: true,
+        });
+
+        modalRef.componentInstance.idUser = this.user?._id;
+        modalRef.componentInstance.idEspacioTrabajo = idEspacioTrabajo;
+        modalRef.componentInstance.espacioDeTrabajo = espacioDeTrabajoDetalle;
+
     }
     
 }
