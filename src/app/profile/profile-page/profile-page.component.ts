@@ -9,7 +9,9 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { NgbNavModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbNavModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../auth/services/auth.service';
+import { ConfirmModalComponent } from '../../modals/confirm-modal/confirm-modal.component';
 
 @Component({
     selector: 'profile-page',
@@ -29,9 +31,11 @@ export class ProfilePageComponent implements OnInit {
     active = 'top';
 
     #profileService = inject(ProfileService);
+    #authService = inject(AuthService);
     @Input() id!: string;
     user!: User;
     #fb = inject(NonNullableFormBuilder);
+    #modalService = inject(NgbModal);
 
     avatarPerfil: string = "";
     nombre = this.#fb.control('', [Validators.required, Validators.email]);
@@ -55,7 +59,6 @@ export class ProfilePageComponent implements OnInit {
 
 
     ngOnInit(): void {
-        console.log(this.id);
         this.getProfile();
     }
 
@@ -101,7 +104,6 @@ export class ProfilePageComponent implements OnInit {
     }
 
     changeImage(event: Event) {
-        console.log(this.avatarPerfil)
         const fileInput = event.target as HTMLInputElement;
         if (!fileInput.files || fileInput.files.length === 0) {
             return;
@@ -110,11 +112,31 @@ export class ProfilePageComponent implements OnInit {
         reader.readAsDataURL(fileInput.files[0]);
         reader.addEventListener('loadend', () => {
             const avatarPerfilString = reader.result as string;
-            console.log(avatarPerfilString)
             this.#profileService.updateAvatar(this.user._id!, avatarPerfilString).subscribe({
                 next: () => {
-                },
+                }
             });
         });
+    }
+
+    deleteAccount(){
+
+        const modalRef = this.#modalService.open(ConfirmModalComponent, {
+            centered:true
+        });
+        modalRef.componentInstance.title = 'Eliminar cuenta';
+        modalRef.componentInstance.body = '¿Estas seguro que quieres eliminar la cuenta?';
+        
+        modalRef.result.then((resp) => {
+            if(resp){
+                this.#authService.deleteAccount(this.id).subscribe({
+                    next: () => {
+                        
+                    }
+                })
+            }
+        })
+
+
     }
 }

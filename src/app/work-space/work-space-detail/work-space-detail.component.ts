@@ -25,7 +25,7 @@ import { UsersService } from '../../users/users.service';
 import { User } from '../../auth/interfaces/user';
 import { AvatarModule } from 'ngx-avatars';
 import { OptionsTableroModalComponent } from '../../modals/options-tablero-modal/options-tablero-modal.component';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faPencil, faUserPlus, faSort } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -39,7 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         FormsModule,
         AvatarModule,
         FontAwesomeModule,
-        NgbTooltipModule
+        NgbTooltipModule,
     ],
     templateUrl: './work-space-detail.component.html',
     styleUrl: './work-space-detail.component.css',
@@ -54,8 +54,9 @@ export class WorkSpaceDetailComponent implements OnInit {
     listaTableros: WritableSignal<Tablero[]> = signal([]);
     #modalService = inject(NgbModal);
     user?: User;
-    icons = { faCircleInfo }
-
+    icons = { faCircleInfo, faPencil, faUserPlus, faSort }
+    titulo: string = "";
+    tipoOrdenacion: boolean = true
     ngOnInit(): void {
         this.getWorkSpaceId();
         this.getTableros();
@@ -66,6 +67,8 @@ export class WorkSpaceDetailComponent implements OnInit {
         this.#WorkSpaceService.getEspaciosDeTrabajoDetalle(this.id).subscribe({
             next: (workSpaceDetail) => {
                 this.workSpaceDetail = workSpaceDetail;
+                this.titulo = this.workSpaceDetail?.titulo!
+
             },
         });
     }
@@ -79,7 +82,9 @@ export class WorkSpaceDetailComponent implements OnInit {
     }
 
     ordenarTablero() {
+        this.tipoOrdenacion = !this.tipoOrdenacion;
         this.filteredTableros().reverse();
+
     }
 
     filteredTableros = computed(() =>
@@ -117,7 +122,6 @@ export class WorkSpaceDetailComponent implements OnInit {
         modalRef.componentInstance.idEspacioTrabajo = this.id;
         modalRef.componentInstance.espacioDeTrabajo = this.workSpaceDetail;
 
-        return modalRef.result.catch(() => false);
     }
 
     modalTablero() {
@@ -143,5 +147,13 @@ export class WorkSpaceDetailComponent implements OnInit {
             const listaFiltrada = this.listaTableros().filter((resp) => resp._id != result._id)
             this.listaTableros.set(listaFiltrada)
         });
+    }
+
+    editEspacioTrabajo() {
+        this.#WorkSpaceService.putEspacioTrabajo(this.id, this.titulo).subscribe({
+            next: () => {
+                this.workSpaceDetail!.titulo = this.titulo;
+            }
+        })
     }
 }

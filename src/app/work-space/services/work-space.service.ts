@@ -14,10 +14,16 @@ export class WorkSpaceService {
     #workSpaceUrl = 'espacioDeTrabajo';
     #router = inject(Router);
 
-    addEspacioDeTrabjo(userInfo: WorkSpace): Observable<WorkSpace> {
+    addEspacioDeTrabjo(workSpaceInfo: WorkSpace): Observable<WorkSpace> {
         return this.#http
-            .post<WorkSpace>(`${this.#workSpaceUrl}`, userInfo)
+            .post<WorkSpace>(`${this.#workSpaceUrl}`, workSpaceInfo)
             .pipe(map((result) => result));
+    }
+    putEspacioTrabajo(id: string, titulo: string): Observable<WorkSpace> {
+        const workSpaceInfo = {
+            titulo: titulo
+        }
+        return this.#http.put<WorkSpace>(`${this.#workSpaceUrl}/${id}`, workSpaceInfo).pipe(map((result) => result));
     }
 
     getEspaciosDeTrabajo(id: string): Observable<WorkSpace[]> {

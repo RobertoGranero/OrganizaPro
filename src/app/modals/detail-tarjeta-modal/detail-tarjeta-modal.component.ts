@@ -1,10 +1,9 @@
 import { Component, Input, OnInit, WritableSignal, inject, signal } from '@angular/core';
-import { NgbActiveModal, NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbNavModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { CheckList, Comentarios, Tarjeta } from '../../boards/interfaces/lista-interfaces';
 import { FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { tarjetaService } from '../../services/tarjetas-service';
 import { CommonModule } from '@angular/common';
-import { Subject } from 'rxjs';
 import { WorkSpaceService } from '../../work-space/services/work-space.service';
 import { UsersService } from '../../users/users.service';
 import { User } from '../../auth/interfaces/user';
@@ -17,7 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
     selector: 'detail-tarjeta-modal',
     standalone: true,
-    imports: [ReactiveFormsModule, FormsModule, CommonModule, AvatarModule, FontAwesomeModule, NgbNavModule],
+    imports: [ReactiveFormsModule, FormsModule, CommonModule, AvatarModule, FontAwesomeModule, NgbNavModule, NgbProgressbarModule],
     templateUrl: './detail-tarjeta-modal.component.html',
     styleUrl: './detail-tarjeta-modal.component.css',
 })
@@ -36,7 +35,7 @@ export class DetailTarjetaModalComponent implements OnInit{
     showTarjetaEdit!: boolean;
     miembros: User[] = [];
     comentarios: WritableSignal<Comentarios[]> = signal([]);
-
+    mediaProgressbar: number = 0;
     usuarioLogueado!: User;
     #fb = inject(NonNullableFormBuilder);
     icons = { faPaperPlane, faCircleExclamation, faSquareCheck, faCheckSolid }
@@ -67,6 +66,7 @@ export class DetailTarjetaModalComponent implements OnInit{
         contenido: this.contenido
     });
 
+
     ngOnInit(): void {
 
         this.showTarjetaEdit = this.tarjeta?.descripcion ? true: false;
@@ -76,6 +76,7 @@ export class DetailTarjetaModalComponent implements OnInit{
         this.descripcion.setValue(this.tarjeta?.descripcion!)
         this.tituloTarjeta.setValue(this.tarjeta?.titulo!)
         this.prioridad.setValue(this.tarjeta?.prioridad!)
+        this.mediaProgressbar = (this.tarjeta?.lengthEstaHecho! * 100) / this.tarjeta?.checkList?.length!
     }
 
     getUsuarioLogueado(){
@@ -153,7 +154,6 @@ export class DetailTarjetaModalComponent implements OnInit{
     getComments(){
         this.#tarjetaService.getComentarios(this.idLista!, this.tarjeta?._id!).subscribe({
             next: (resp) => {
-                console.log(resp)
                 this.comentarios.set(resp)
             }
         })
@@ -164,6 +164,8 @@ export class DetailTarjetaModalComponent implements OnInit{
             next: (resp) => {
                 this.tarjeta!.lengthEstaHecho!++;
                 checkList.estaHecho = true;
+                this.mediaProgressbar = (this.tarjeta?.lengthEstaHecho! * 100) / this.tarjeta?.checkList?.length!
+
             }
         })
 
@@ -174,6 +176,7 @@ export class DetailTarjetaModalComponent implements OnInit{
             next: (resp) => {
                 this.tarjeta!.lengthEstaHecho!--;
                 checkList.estaHecho = false;
+                this.mediaProgressbar = (this.tarjeta?.lengthEstaHecho! * 100) / this.tarjeta?.checkList?.length!
 
             }
         })

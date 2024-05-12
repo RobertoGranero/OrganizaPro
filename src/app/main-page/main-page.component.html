@@ -11,16 +11,16 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
           <li class="nav-item menuLinks">
-            <a class="nav-link mx-lg-2 active" aria-current="page" href="#">Home</a>
+            <a class="nav-link mx-lg-2 active" aria-current="page" href="#inicio">Inicio</a>
           </li>
           <li class="nav-item menuLinks">
             <a class="nav-link mx-lg-2" href="#flujoDeTrabajo">Flujo de trabajo</a>
           </li>
           <li class="nav-item menuLinks">
-            <a class="nav-link mx-lg-2" href="#">Services</a>
+            <a class="nav-link mx-lg-2" href="#precios">Precios</a>
           </li>
           <li class="nav-item menuLinks">
-            <a class="nav-link mx-lg-2" href="#">Contact</a>
+            <a class="nav-link mx-lg-2" href="#contact">Contacto</a>
           </li>
         </ul>
       </div>
@@ -39,13 +39,13 @@
   </div> -->
 
 
-  <section class="inicioPagina">
+  <section class="inicioPagina" id="inicio">
     <div class="d-flex flex-column justify-content-center align-items-center fs-1">
       <div class="contenidoInicio">
         <h1 class="text-center">Transforma tu caos en orden con OrganizaPro</h1>
         <p class="text-center"> La manera fácil y elegante de manejar tus proyectos</p>
         <div class="divButton text-center">
-          <a [routerLink]="['/auth']" class="btn">Comenzar</a>
+          <a [routerLink]="['/auth']" class="btnComenzar">Comenzar</a>
         </div>
       </div>
 
@@ -71,92 +71,170 @@
       conectar las tareas y los flujos de trabajo con los objetivos de toda la empresa.</p>
   </section>
 
-  <section class="sectionFlujo" id="flujoDeTrabajo">
-    <div class="container text-center">
-      <h2 class="text-white mb-5">FLUJO DE TRABAJO</h2>
-
-      <div class="row gy-3">
-        <div class="col-sm-12 col-md-5">
-          <article class="card bg-dark h-100">
-            <img src="../../assets/chairs-2181994_640.jpg" height="350px" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-white">Gestión de proyectos</h5>
-              <p class="card-text text-white">Mantenga las tareas en orden, los plazos al día y los miembros del equipo
-                alineados con OrganizaPro.</p>
-            </div>
-          </article>
+  <section class="sectionFlujo " id="flujoDeTrabajo">
+    <div class="containerFlujo">
+      <div class="row mb-3 g-4">
+        <div class="col-12 col-md-5 col-lg-3 gestionProyectos me-3">
+          <div class="containerSectionFlujo">
+            <h5>Gestión de proyectos</h5>
+            <p>Mantenga las tareas en orden, los plazos al día y los miembros del equipo alineados con OrganizaPro.</p>
+          </div>
         </div>
-
-        <div class="col-sm-12 col-md-7">
-          <article class="card bg-dark h-100">
-            <img src="../../assets/todo-lists-5238324_640.jpg" height="350px" class="card-img-top">
-            <div class="card-body d-flex align-items-center justify-content-center flex-column">
-              <h5 class="card-title text-white">Administración de tareas</h5>
-              <p class="card-text text-white">Utilice OrganizaPro para realizar un seguimiento, gestionar, completar y
-                unir tareas como las piezas de un rompecabezas, y hacer que los proyectos de su equipo sean siempre un
-                éxito coherente.</p>
-            </div>
-          </article>
+        <div class="col-12 col-md-6 col-lg-8 administracionTareas">
+          <div class="containerSectionFlujo">
+            <h5>Administración de tareas</h5>
+            <p>Utilice OrganizaPro para realizar un seguimiento, gestionar, completar y unir tareas como las piezas de
+              un rompecabezas, y hacer que los proyectos de su equipo sean siempre un éxito coherente.</p>
+          </div>
         </div>
       </div>
 
-      <div class="row gy-3 mt-1">
-        <div class="col-sm-12 col-md-6">
-          <article class="card bg-dark h-100">
-            <img src="../../assets/meeting-594091_640.jpg" height="350px" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-white">Lluvia de ideas</h5>
-              <p class="card-text text-white">Libera la creatividad de tu equipo y mantén las ideas visibles,
-                colaborativas y procesables.</p>
-            </div>
-          </article>
+      <div class="row gx-4">
+        <div class="col-12 col-md-6 col-lg-8 lluviaIdeas me-3 mb-3">
+          <div class="containerSectionFlujo">
+            <h5>Lluvia de ideas</h5>
+            <p>Libera la creatividad de tu equipo y mantén las ideas visibles, colaborativas y procesables.</p>
+          </div>
         </div>
-        <div class="col-sm-12 col-md-6">
-          <article class="card bg-dark h-100">
-            <img src="../../assets/man-593333_1280.jpg" height="350px" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-white">Centro de recursos</h5>
-              <p class="card-text text-white">Ahorre tiempo con un centro bien diseñado que ayude a los equipos a
-                encontrar información fácil y rápidamente.</p>
-            </div>
-          </article>
+        <div class="col-12 col-md-5 col-lg-3 centroRecursos">
+          <div class="containerSectionFlujo">
+            <h5>Centro de recursos</h5>
+            <p>Ahorre tiempo con un centro bien diseñado que ayude a los equipos a encontrar información fácil y
+              rápidamente.</p>
+          </div>
         </div>
       </div>
 
-      <div class="row gy-3 mt-1">
-        <div class="col-sm-12 col-md-5">
-          <article class="card bg-dark h-100">
-            <img src="../../assets/job-5382501_640.jpg" height="350px" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-white">Reuniones</h5>
-              <p class="card-text text-white">Capacite las reuniones de su equipo para que sean más productivas,
-                empoderadoras y, nos atrevemos a decir, divertidas.</p>
-            </div>
-          </article>
+      <div class="row gx-4">
+        <div class="col-12 col-md-5 col-lg-5 reuniones me-3 mb-3">
+          <div class="containerSectionFlujo">
+            <h5>Reuniones</h5>
+            <p>Capacite las reuniones de su equipo para que sean más productivas, empoderadoras y, nos atrevemos a
+              decir, divertidas.</p>
+          </div>
         </div>
 
-        <div class="col-sm-12 col-md-7">
-          <article class="card bg-dark h-100">
-            <img src="../../assets/plans-1867745_640.jpg" height="350px" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-white">Inducción</h5>
-              <p class="card-text text-white">La incorporación a una nueva empresa o proyecto es muy sencilla con el
-                diseño visual de tareas pendientes y recursos de OrganizaPro.</p>
-            </div>
-          </article>
+        <div class="col-12 col-md-6 col-lg-6 induccion me-3">
+          <div class="containerSectionFlujo">
+            <h5>Inducción</h5>
+            <p>La incorporación a una nueva empresa o proyecto es muy sencilla con el diseño visual de tareas pendientes
+              y recursos de OrganizaPro.</p>
+          </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <section class="explicacionOrganizaPro">
-    
+  <section class="precios" id="precios">
+    <div class="cards">
+      <div class="card shadow">
+        <ul>
+          <li class="pack">Basic</li>
+          <li id="basic" class="price bottom-bar">Free</li>
+          <li class="bottom-bar">Acceso limitado</li>
+          <li class="bottom-bar">Tableros limitados (10) </li>
+          <li class="bottom-bar">24/7 Soporte</li>
+          <li><button class="btn-mas" [routerLink]="['/auth']">Empezar ahora mismo</button></li>
+        </ul>
+      </div>
+      <div class="card active">
+        <ul>
+          <li class="pack">Professional</li>
+          <li id="professional" class="price bottom-bar">49,99&euro;</li>
+          <li class="bottom-bar">Acceso ilimitado</li>
+          <li class="bottom-bar">Tableros limitados (20)</li>
+          <li class="bottom-bar">24/7 Soporte</li>
+          <li><button class="btn-mas active-btn">Actualizar ahora</button></li>
+        </ul>
+      </div>
+      <div class="card shadow">
+        <ul>
+          <li class="pack">Master</li>
+          <li id="master" class="price bottom-bar">89,99&euro;</li>
+          <li class="bottom-bar">Acceso ilimitado</li>
+          <li class="bottom-bar">Tablero ilimitados</li>
+          <li class="bottom-bar">24/7 Soporte</li>
+          <li><button class="btn-mas">Actualizar ahora</button></li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
-  
+  <section id="contact">
+    <div class="form-area">
+      <div class="container">
+        <div class="row single-form g-0">
+          <div class="col-sm-12 col-lg-6">
+            <div class="left">
+              <h2><span>Contactanos para</span> <br>ayudarte</h2>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <div class="right">
+              <i class="fa fa-caret-left"></i>
+              <form action="https://formsubmit.co/sencarketestonto@gmail.com" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Nombre *</label>
+                  <input type="text" name="nombre" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Correo electronico *</label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Mensaje (Opcional)</label>
+                  <textarea class="form-control" name="mensaje" id="exampleInputPassword1"></textarea>
+                </div>
+                <button type="submit" name="enviar">Enviar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer class="bg-dark">
-  <span class="text-light">© 2024 OrganizaPro. Todos los derechos reservados.</span>
+<footer class="d-flex justify-content-center align-items-center">
+  <div class="p-5">
+    <div class="headerFooter">
+      <a class="navbar-brand me-auto" href="#"><img src="../../assets/logov2.png" alt="">OrganizaPro</a>
+      <div class="d-flex justify-content-between">
+        <span>Get connected with us on social networks: </span>
+        <div class="iconsFooter">
+          <a href="https://www.google.com/?hl=es"><fa-icon [icon]="icons.faGoogle" class="me-3"></fa-icon></a>
+          <a href="https://twitter.com/home?lang=es"><fa-icon [icon]="icons.faXTwitter" class="me-3"></fa-icon></a>
+          <a href="https://www.facebook.com/?locale=es_ES"><fa-icon [icon]="icons.faFacebook" class="me-3"></fa-icon></a>
+          <a href="https://www.instagram.com/"><fa-icon [icon]="icons.faInstagram" class="me-3"></fa-icon></a>
+
+
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="mainFooter d-flex justify-content-around">
+      <article class="textoArticle">OrganizaPro es una aplicacion de administracion de proyectos, en el que transformaras el caos en orden</article>
+      <article>
+        <ul>
+          <li><a href="">Flujo de trabajo</a></li>
+          <li><a href="">Precios</a></li>
+          <li><a href="">Aviso legal</a></li>
+        </ul>
+      </article>
+      <article>
+        <ul>
+          <li><a href="">Contacto</a></li>
+          <li><a href="">Twitter</a></li>
+          <li><a href="">Facebook</a></li>
+          <li><a href="">Instagram</a></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+
+
 </footer>

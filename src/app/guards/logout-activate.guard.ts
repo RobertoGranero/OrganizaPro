@@ -8,7 +8,6 @@ export const logoutActivateGuard: CanActivateFn = () => {
     const router = inject(Router);
     return authService.isLogged().pipe(
         map((result) => {
-            console.log(result);
             if (result) 
                 return router.createUrlTree(['/work-space']);
             else 

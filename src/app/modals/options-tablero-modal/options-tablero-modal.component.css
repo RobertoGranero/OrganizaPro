@@ -6,6 +6,30 @@ form input{
     background-color: #F5F5F5;
 }
 
+input:not(.inputColor){
+    border: 0;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid black;
+}
+input:not(.inputColor):hover{
+    background-color: #2b3d4f1c;
+}
+input:not(.inputColor):focus{
+    outline: none;
+    border: 0;
+    background-color: #2b3d4f1c;
+    border-bottom: 1px solid black;
+
+}
+
+.btnOption{
+    background-color: #2B3D4F;
+    color: white;
+    border: 1px solid #677583;
+    padding: 5px;
+    width: 25%;
+}
+
 .editButton{
     background-color: #457AE5;
     border: 0;
@@ -22,4 +46,15 @@ form input{
     border-radius: 2px;
     font-weight: 500;
 
+}
+
+.optionsDelete{
+    width: 20%;
+}
+
+.optionsDelete:nth-child(1):hover{
+    background-color: #ff002259;
+}
+.optionsDelete:nth-child(2):hover{
+    background-color: rgba(38, 165, 38, 0.39);
 }

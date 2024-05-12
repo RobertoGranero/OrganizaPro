@@ -4,15 +4,14 @@ import { TopMenuComponent } from '../../top-menu/top-menu.component';
 import { WorkSpaceService } from '../services/work-space.service';
 import { FormsModule, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { WorkSpace } from '../interfaces/work-space-interfaces';
-import { AuthService } from '../../auth/services/auth.service';
 import { UsersService } from '../../users/users.service';
 import { User } from '../../auth/interfaces/user';
 import { NgbAccordionModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
-import { boardsService } from '../../services/boards-service';
 import { ChatHelpComponent } from '../../chatHelp/chat-help/chat-help.component';
 import { Tablero } from '../../interfaces/tablero-interfaces';
 import { AddUsersModalComponent } from '../../modals/add-users-modal/add-users-modal.component';
+import { AutoanimateDirective } from '../../autoanimate.directive';
 
 
 
@@ -27,7 +26,8 @@ import { AddUsersModalComponent } from '../../modals/add-users-modal/add-users-m
         RouterLink,
         FormsModule,
         ChatHelpComponent,
-        NgbAccordionModule
+        NgbAccordionModule,
+        AutoanimateDirective
     ],
     templateUrl: './work-space-page.component.html',
     styleUrl: './work-space-page.component.css',
@@ -47,7 +47,6 @@ export class WorkSpacePageComponent implements OnInit{
         this.#UsersService.getUsuarioLogueado().subscribe({
             next: (userInfo) => {
                 this.user = userInfo;
-                console.log(this.user)
                 this.getEspaciosDeTrabajo(userInfo._id!)
                 this.getEspaciosDeTrabajoMiembros(userInfo._id!)
                 this.getTablerosCreadosRecientemente(userInfo._id!)
@@ -129,5 +128,17 @@ export class WorkSpacePageComponent implements OnInit{
         modalRef.componentInstance.espacioDeTrabajo = espacioDeTrabajoDetalle;
 
     }
+
+    estaOscuro(color: string): boolean {
+        const r = parseInt(color.substr(1, 2), 16);
+        const g = parseInt(color.substr(3, 2), 16);
+        const b = parseInt(color.substr(5, 2), 16);
+
+        const iluminacion = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+        return iluminacion < 128;
+    }
+
+
     
 }

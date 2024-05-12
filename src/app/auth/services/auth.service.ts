@@ -84,9 +84,19 @@ export class AuthService {
     }
 
     logout(): void {
-        console.log("aaa")
         this.cookieService.delete('token');
         this.#logged.set(false);
         this.#router.navigate(['/']);
+    }
+
+    deleteAccount(id: string) {
+        return this.#http
+            .delete<void>(`${this.#authUrl}/${id}`)
+            .pipe(map((result) => {
+                this.cookieService.delete('token');
+                this.#logged.set(false);
+                this.#router.navigate(['/']);
+                return result
+            }));
     }
 }

@@ -4,7 +4,12 @@
 
 
 main {
-    background-image: linear-gradient(145deg, rgba(232, 87, 237, 0.15) 0%,rgba(109, 137, 69, 0.15) 100%),linear-gradient(75deg, rgb(33, 138, 184),rgb(0, 241, 181));
+    background-color:hsla(36,0%,100%,1);
+    background-image:
+    radial-gradient(at 82% 22%, hsla(359,89%,85%,0.3) 0px, transparent 50%),
+    radial-gradient(at 21% 78%, hsla(122,82%,76%,0.3) 0px, transparent 50%),
+    radial-gradient(at 82% 79%, hsla(195,74%,77%,0.3) 0px, transparent 50%),
+    radial-gradient(at 22% 22%, hsla(266,100%,86%,0.3) 0px, transparent 50%);
     height: 100vh;
 }
 
@@ -16,11 +21,16 @@ main {
     color: white;
 }
 li button.active{
-    background-color: #2b3d4f;
+    background-color: #1c2229;
     color: white;
 }
 
-li button:hover{
-    background-color: #36516b;
+li button{
+    border: 1px solid black;
+    color: black;
+}
+
+li button:hover:not(li button.active){
+    background-color: #1c22295d;
     color: white;
 }

@@ -1,27 +1,62 @@
 
-header {
-    padding-bottom: 2px;
-    margin-top: 44px;
-    background-color: #2d3842fd;
-    padding-left: 5%;
-    border-bottom: 1px dotted #172736;
-}
-
-header p {
-    color: white;
-}
 
 main {
     padding-top: 1%;
     height: 100vh;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+}
+header div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #292f31;
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+
+    background-color: #f5f5f5;
+    border-radius: 50px;
+    width: 500px;
+    height: 40px;
+}
+
+
+
+header div p {
+    color: black;
+    margin: 0;
+}
+
+header div button {
+    border-radius: 2px;
+    height: 40px;
+    color: white;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: 0;
+    color: black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+
+}
+
+header div button:hover{
+    background-color: #080B0C;
+    color: white;
+}
+
 .container-margin {
+    margin-top: 2%;
     margin-left: 5%;
     margin-right: 5%;
 }
 
-.iconPencil {
+.iconPencil, .iconDeleteLista {
     border: 0;
     background-color: #ebecf0;
     border-radius: 4px;
@@ -35,6 +70,11 @@ main {
     background-color: #a5adb457;
 }
 
+.iconDeleteLista:hover{
+    border-radius: 4px;
+    background-color: #f34a4a52;
+}
+
 .container-dragDrop {
     width: 250px;
     max-width: 100%;
@@ -44,7 +84,7 @@ main {
     background-color: #ebecf0;
     border-radius: 6px;
     padding: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 /* form input {
@@ -92,12 +132,23 @@ h4 {
     display: block;
 }
 
-.inputLista{
+.inputLista {
     background-color: rgba(255, 255, 255, 0);
     border: 0;
     font-size: 18px;
     width: 160px;
 }
+.btn-lista, .btn-lista-cancelar{
+    border: 1px solid black;
+
+}
+.btn-lista:hover{
+    background-color: rgba(102, 236, 98, 0.384);
+}
+.btn-lista-cancelar:hover{
+    background-color: rgba(255, 0, 0, 0.349);
+}
+
 
 .example-box {
     padding: 10px 15px;
@@ -112,10 +163,10 @@ h4 {
     font-size: 14px;
 }
 
-.infoTarjeta{
+.infoTarjeta {
     font-size: 12px;
     padding-bottom: 5px;
-    border-bottom:1px solid rgb(192, 192, 192);
+    border-bottom: 1px solid rgb(192, 192, 192);
 }
 
 .addTarjeta {
@@ -179,7 +230,8 @@ h4 {
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-.example-box{
+
+.example-box {
     border: 0;
 }
 
@@ -191,23 +243,82 @@ h4 {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.prioridadDiv{
+.prioridadDiv {
     border-radius: 5px;
     padding: 0 4px 0 4px;
 }
 
-.prioridadUrgente{
+.prioridadUrgente {
     background-color: #FF5733;
 }
-.prioridadAlta{
-    background-color: #FFD700 ;
+
+.prioridadAlta {
+    background-color: #FFD700;
 }
-.prioridadNormal{
-    background-color: #00FF00 ;
+
+.prioridadNormal {
+    background-color: #00FF00;
 }
-.prioridadBaja{
-    background-color: #A9A9A9 ;
+
+.prioridadBaja {
+    background-color: #A9A9A9;
 }
-.prioridadNinguna{
+
+.prioridadNinguna {
     background-color: #FFFFFF;
+}
+
+.iconDelete {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 15px;
+    border-radius: 70%;
+    background-color: red;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    gap: 2px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+}
+
+.svgIcon path {
+    fill: white;
+}
+
+.button:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+    gap: 0;
+}
+
+.bin-top {
+    transform-origin: bottom right;
+}
+
+.button:hover .bin-top {
+    transition-duration: 0.5s;
+    transform: rotate(160deg);
 }

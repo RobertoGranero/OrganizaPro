@@ -2,22 +2,23 @@
 
 <main>
     <div class="container">
-        <div class="row gx-5 d-flex justify-content-center align-items-center text-center">
+        <div class="row gx-5 d-flex justify-content-center align-items-center text-center flex-wrap rowInfoEspacio">
 
-            <section class="col-6 infoEspacio">
+            <section class="col-12 col-md-6 infoEspacio">
                 @if (workSpaceDetail) {
-                <div class="d-flex justify-content-center align-items-center text-center">
+                <div class="d-flex justify-content-center align-items-center">
                     <div class="me-3">
                         <ngx-avatars name="{{workSpaceDetail.titulo}}" bgColor="#7EFFAC" [round]="false" fgColor="black"
                             id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
                     </div>
                     <div>
                         <div>
-                            {{workSpaceDetail.titulo}}
+                            <input type="text" class="inputLista" [(ngModel)]="titulo">
+                            <button (click)="editEspacioTrabajo()" class="iconPencil" placement="top"
+                              ngbTooltip="Edita el titulo"><fa-icon [icon]="icons.faPencil"></fa-icon></button>
                         </div>
-                        <div>
+                        <div class="text-start">
                             {{workSpaceDetail.fecha | date: "dd/MM/yyyy, h:mm a"}}
-
                         </div>
                     </div>
                 </div>
@@ -25,9 +26,8 @@
             </section>
             @if (workSpaceDetail?.creadoPor === user?._id) {
 
-            <section class="col-6">
-                <button class="btn" (click)="addModalUsers()">Invitar a miembros al espacio de trabajo</button>
-
+            <section class="col-12 col-md-6 invitaMiembros mt-2">
+                <button class="btn" (click)="addModalUsers()"><fa-icon [icon]="icons.faUserPlus" class="me-2 text-dark"></fa-icon>Invitar a miembros al espacio de trabajo</button>
             </section>
             }
         </div>
@@ -35,8 +35,13 @@
     <hr class="d-flex justify-content-center mt-4">
     <section class="sectionInformacionTableros mt-3">
         <h5 class="mt-4 mb-3">Tableros</h5>
-        <div class="d-flex justify-content-between align-items-center">
-            <button (click)="ordenarTablero()" class="btn-ordenar">Ordenar por fecha de creacion</button>
+        <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row">
+            @if (tipoOrdenacion) {
+                <button (click)="ordenarTablero()" class="btn-ordenar me-sm-3 mb-3"><fa-icon [icon]="icons.faSort" class="me-2 text-white"></fa-icon>Ordenar por fecha de creacion (De mas nuevo a mas viejo)</button>
+            }
+            @else if(!tipoOrdenacion) {
+                <button (click)="ordenarTablero()" class="btn-ordenar me-sm-3 mb-3"><fa-icon [icon]="icons.faSort" class="me-2 text-white"></fa-icon>Ordenar por fecha de creacion (De mas viejo a mas nuevo)</button>
+            }
             <form action="">
                 <input type="search" [ngModel]="search()" (ngModelChange)="search.set($event)" name="search" id="search"
                     placeholder="Buscar">
@@ -46,7 +51,7 @@
     </section>
 
     <section class="listaTableros container mt-5">
-        <div class="row gy-3">
+        <div class="row gy-3" >
             <div class="col-12 col-sm-12 col-md-3">
                 <div class="card insertaTablero" (click)="modalTablero()">
                     <div class="card-body ">

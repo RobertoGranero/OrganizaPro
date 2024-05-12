@@ -1,0 +1,4 @@
+.modal-body, .modal-header, .modal-footer{
+    background-color: white;
+    border-radius: 0;
+}

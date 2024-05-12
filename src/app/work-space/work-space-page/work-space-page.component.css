@@ -1,16 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-/* Import Google font - Poppins */
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 *{
-  font-family: "Poppins", sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 
 main{
   margin-top: 40px;
   padding-top: 90px;
-  height: 100vh;
-  background-color: #2B3D4F;
-  
+  height: 120vh;
+  max-height: auto;
+  background-color: #080B0C;
 }
 
 @media (max-width: 945px) {
@@ -40,27 +38,27 @@ main{
 
 
 #v-pills-tab button.active{
-  background-color: #fcffea;
-  color: #2b3d4f;
+  background-color: hsl(203, 37%, 28%, 30%);
+  color: #E5E9EB;
 }
 
 #v-pills-tab button{
-  color: white;
+  color: #E5E9EB;
 }
 
 .accordion-body a, .accordion-button{
-  background-color: #2b3d4f;
-  color: white;
+  background-color: #080B0C;
+  color: #E5E9EB;
+
 }
 .accordion-item{
-  background-color: #2b3d4f;
+  background-color: #080B0C;
+  border: 1px solid #E5E9EB;
+
+  color: #E5E9EB;
 }
 
-.accordion-button:not(.collapsed)::after{
-  color: white;
-}
-
-.noInserta{
+.noInserta:not(.colorCard){
   border: 2px solid #fcffea;
   background-color: #212d3a;
   color: white;
@@ -73,10 +71,19 @@ main{
   border: 2px solid #212d3a;
 
 }
-
+.colorCard{
+  border: 1px solid black;
+}
 .colorCard:hover{
   cursor: pointer;
-  border: 2px solid black;
+  border: 1px solid white;
+}
+
+.containerEspaciosTrabajo{
+  border: 1px solid white;
+  padding: 45px;
+  border-radius: 15px;
+  margin-top: 80px;
 }
 
 .workSpaceCard{
@@ -88,8 +95,8 @@ main{
 
 .workSpaceCard:hover{
   cursor: pointer;
-  background-color: #fcffea;
-  color: #2b3d4f;
+  background-color: hsl(203, 37%, 28%, 20%);
+  color: #E5E9EB;
   border-radius: 0;
 }
 
@@ -106,12 +113,12 @@ main{
 }
 
 .scroll{
-  height: auto;
+  height: 350px;
   max-height: 350px;
 }
 
 h5, h3{
-  color: #fcffea;
+  color: #E5E9EB;
   font-weight: 400;
   font-size: 22px;
 }
@@ -120,16 +127,22 @@ h5, h3{
 textarea{
   border: 1px solid white;
   border-radius: 5px;
-  background-color: #212d3a;
-  color: white;
+  background-color: hsl(203, 37%, 28%, 30%);
+  color: #E5E9EB;
   resize: none;
   text-align: center;
   width: 25em;
 }
 
 textarea::placeholder{
-  color: white;
+  color: #E5E9EB;
   text-align: center;
+}
+
+@media (max-width: 470px) {
+  textarea{
+    width: auto;
+  }
 }
 
 li a{
@@ -141,4 +154,13 @@ li a:hover{
   cursor: pointer;
   text-decoration: underline;
 
+}
+
+.imagenDeco img{
+  width: 30%;
+  height: 45%;
+  position: fixed;
+  left: 0;
+  padding: 5px;
+  bottom: 10px;
 }

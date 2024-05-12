@@ -19,7 +19,6 @@ export class UsersService {
     }
 
     getUsuarios(): Observable<User[]> {
-        console.log("aaa")
         return this.#http
             .get<User[]>(`${this.#authUrl}/usuarios`)
             .pipe(map((result) => result));

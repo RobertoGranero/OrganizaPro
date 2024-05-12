@@ -54,6 +54,9 @@
         <li [ngbNavItem]="2">
             <button ngbNavLink>CheckList</button>
             <ng-template ngbNavContent>
+                <ngb-progressbar class="mb-3" type="info" [value]="mediaProgressbar">Copying file
+                    <b>{{tarjeta?.lengthEstaHecho}} de {{tarjeta?.checkList?.length}}</b>...</ngb-progressbar>
+
                 @for (checkList of tarjeta?.checkList; track $index) {
                 <div class="checkList d-flex justify-content-between mb-2">
                     <div class="p-1 ms-1">
@@ -68,7 +71,6 @@
                     }
 
                     <div>
-                        {{checkList.estaHecho}}
                         @if (checkList.estaHecho === false) {
                         <button class="btn" (click)="postCheckTarea(checkList)"><fa-icon class="iconCheck"
                                 [icon]="icons.faSquareCheck"></fa-icon></button>
@@ -131,7 +133,7 @@
             <button ngbNavLink>Comentarios</button>
             <ng-template ngbNavContent>
                 @for (comentario of tarjeta?.comentarios; track $index) {
-                <div class="d-flex">
+                <div class="d-flex" >
 
                     @if (comentario.usuario?.avatar) {
                     <ngx-avatars src="{{comentario.usuario?.avatar}}" [round]="true" class="me-2" size="35"

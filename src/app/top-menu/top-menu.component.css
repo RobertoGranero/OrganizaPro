@@ -12,16 +12,16 @@ a img{
 }
 
 .navbar {
-  background-color: #2B3D4F;
-  border-bottom: 1px solid #172736;
-  height: 44px;
+  background-color: #080B0C;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: 64px;
   padding: 0.5rem;
   box-shadow: none;
   transition: background-color 0.5s ease 0s, box-shadow 0.5s ease 0s;
 }
 
 .navbar:hover {
-  box-shadow: rgba(9, 30, 66, 0.15) 0px 0.5rem 1rem 0px;
+  box-shadow: #e5e9eb0c 0px 0.5rem 1rem 0px;
 }
 
 .navbar-toggler {
@@ -37,36 +37,31 @@ a img{
 }
 
 .nav-link {
-  color: white;
+  color: #E5E9EB;
   font-weight: 400;
   border-radius: 2px;
+  height: 44px;
+  margin-top: 4px;
+  transition: opacity 0.3s ease;
+
 
 }
 
 .nav-link:hover,
 .nav-link.active {
-  background-color: #b6c2cf;
-  border-radius: 2px;
-  color: black;
-
+  color: #e5e9eb98;
 }
 
-@media (min-width: 991px) {
-  /* .menuLinks .nav-link::after {
-      content: "";
-      width: 0;
-      height: 3px;
-      background-color: #009970;
-      border-radius: 50px;
-      margin: auto;
-      display: block;
-  }
+/* background-color: #b6c2cf;
+border-radius: 2px;
+color: black;
+height: 41px; */
 
-  .menuLinks .nav-link:hover::after,
-  .menuLinks .nav-link:active::before {
-      width: 100%;
-      transition: width 0.2s linear;
-  } */
+@media (max-width: 991px) {
+  .container{
+    position: relative;
+    bottom: 8px;
+  }
 }
 
 input .navbar-toggler{
@@ -85,7 +80,7 @@ fa-icon{
 }
 
 .avatarIcon{
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 ngx-avatars:hover{

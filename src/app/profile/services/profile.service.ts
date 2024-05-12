@@ -29,4 +29,6 @@ export class ProfileService {
     return this.#http.post<void>(`${this.#profileAuth}/avatar/${id}`, avatarInfo).pipe(map((result) => result));
   }
 
+
+
 }

@@ -1,4 +1,4 @@
-<section class="d-flex justify-content-center align-items-center">
+<section class="d-flex justify-content-center align-items-center containerRegister">
     <div class="card pt-5">
         <div class="card-body p-5 text-center">
             <div class="d-flex justify-content-center align-items-center divOrganiza">
@@ -42,7 +42,7 @@
                 <div class="form-check d-flex justify-content-start mb-4">
                     <input class="form-check-input" type="checkbox" value="" id="checkbox_id_register"
                         (change)="checkedRegister === false ? checkedRegister = true : checkedRegister = false " />
-                    <label class="form-check-label ms-3" for="checkbox_id_register"> Remember password </label>
+                    <label class="form-check-label ms-3" for="checkbox_id_register"> Mostrar contraseña </label>
                 </div>
 
                 <button class="btn btn-lg btn-block w-100" [disabled]="formRegister.invalid">Continuar</button>
@@ -50,6 +50,8 @@
             
 
             <hr class="my-4">
+            <p>O continúa con:</p>
+
             <div googleLogin class="d-flex justify-content-center">Iniciar sesion</div>
 
 

@@ -32,7 +32,6 @@ export class AddUsersModalComponent implements OnInit{
     miembros!: User;
     search = signal('');
     ngOnInit(): void {
-        console.log(this.espacioDeTrabajo)
         this.getUsuarios()
     }
 

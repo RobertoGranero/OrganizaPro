@@ -25,8 +25,10 @@ import { DndDropEvent, DndModule, EffectAllowed } from 'ngx-drag-drop';
 import { NgbModal, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailTarjetaModalComponent } from '../../modals/detail-tarjeta-modal/detail-tarjeta-modal.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faListCheck, faPencil, faComment } from '@fortawesome/free-solid-svg-icons';
+import { faListCheck, faPencil, faComment, faTrash, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { tarjetaService } from '../../services/tarjetas-service';
+import { RouterLink } from '@angular/router';
+import { AutoanimateDirective } from '../../autoanimate.directive';
 
 @Component({
     selector: 'board',
@@ -38,7 +40,9 @@ import { tarjetaService } from '../../services/tarjetas-service';
         FormsModule,
         DndModule,
         FontAwesomeModule,
-        NgbTooltipModule
+        NgbTooltipModule,
+        RouterLink,
+        AutoanimateDirective
     ],
     templateUrl: './board.component.html',
     styleUrl: './board.component.css',
@@ -68,7 +72,7 @@ export class BoardComponent implements OnInit {
 
 
     #modalService = inject(NgbModal);
-    icons = {faPencil, faListCheck, faComment}
+    icons = {faPencil, faListCheck, faComment, faTrash, faCircleXmark}
 
     draggable = {
         data: 'myDragData',
@@ -101,6 +105,15 @@ export class BoardComponent implements OnInit {
 
             },
         });
+    }
+
+    deleteLista(idLista: string){
+        this.#listaService.deleteLista(idLista).subscribe({
+            next: (resp) => {
+                const listaNoBorradas = this.listas().filter((lista) => lista._id !== resp._id)
+                this.listas.set(listaNoBorradas)
+            }
+        })
     }
 
     postLista() {
@@ -143,31 +156,10 @@ export class BoardComponent implements OnInit {
         );
         this.indexTarjeta = index;
         this.indexLista = indexLista;
-    }
-
-    onDragEnd(event: DragEvent, draggedObject: Tarjeta, indexLista: number) {
 
     }
 
-    onDraggableCopied(event: DragEvent) {
-        console.log('draggable copied', JSON.stringify(event, null, 2));
-    }
-
-    onDraggableLinked(event: DragEvent) {
-        console.log('draggable linked', JSON.stringify(event, null, 2));
-    }
-
-    onDraggableMoved(event: DragEvent) {
-        console.log('draggable moved', JSON.stringify(event, null, 2));
-    }
-
-    onDragCanceled(event: DragEvent) {
-        console.log('drag cancelled', JSON.stringify(event, null, 2));
-    }
-
-    onDragover(event: DragEvent) {
-        console.log('drag over', JSON.stringify(event, null, 2));
-    }
+    
 
     onDrop(event: DndDropEvent, dropIndice: number) {
         if(dropIndice !== this.indexLista) {
@@ -176,13 +168,13 @@ export class BoardComponent implements OnInit {
             }
             const draggedObject = this.listas()[this.indexLista!].tarjetas[this.indexTarjeta];
     
-            this.#tarjetaService.cambiarTarjetaDeLista(this.listas()[dropIndice]._id!, draggedObject).subscribe({
+            this.#tarjetaService.dropTarjetaDeLista(this.listas()[dropIndice]._id!, draggedObject).subscribe({
                 next: () => {
                     this.listas()[dropIndice].tarjetas.push(draggedObject);
                 }
             }) 
     
-            this.#tarjetaService.borrarTarjetaDeLista(this.listas()[this.indexLista!]._id!, this.indexTarjeta!).subscribe({
+            this.#tarjetaService.dragTarjetaDeLista(this.listas()[this.indexLista!]._id!, this.indexTarjeta!).subscribe({
                 next: (result) => {
                     this.listas()[this.indexLista!].tarjetas = result
                 }
@@ -190,6 +182,24 @@ export class BoardComponent implements OnInit {
     
             this.indexTarjeta = undefined;
         }
+        
+    }
+    onDropDelete(event: DndDropEvent) {
+
+        if (typeof this.indexTarjeta !== 'number') {
+            return;
+        }
+        const draggedObject = this.listas()[this.indexLista!].tarjetas[this.indexTarjeta];
+        console.log(draggedObject)
+
+        this.#tarjetaService.deleteTarjeta(this.listas()[this.indexLista!]._id!, draggedObject._id!).subscribe({
+            next: () => {
+                this.listas().forEach((resultado) => {
+                    resultado.tarjetas.splice(this.indexTarjeta!, 1)
+                })
+            }
+        })
+       
         
     }
 
@@ -213,8 +223,9 @@ export class BoardComponent implements OnInit {
         modalRef.componentInstance.idEspacioTrabajo = this.board?.espacioTrabajo;
 
         modalRef.result.then((resp) => {
+            const indexTarjeta = resp as number;
             this.listas().forEach((resultado) => {
-                resultado.tarjetas.splice(resp, 1)
+                resultado.tarjetas.splice(indexTarjeta, 1)
             })
         })
 

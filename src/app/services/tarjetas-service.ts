@@ -15,14 +15,14 @@ export class tarjetaService {
     postTarjetas(id: string, infoLista: Tarjeta): Observable<Tarjeta>{
         return this.#http.post<Tarjeta>(`${this.#tarjetasUrl}/${id}/tarjetas`, infoLista).pipe(map((result) => result))
     }
-    deleteTarjeta(id: string, idTarjeta: string): Observable<Number>{
-        return this.#http.delete<Number>(`${this.#tarjetasUrl}/${id}/tarjeta/${idTarjeta}/deleteTarjeta`).pipe(map((result) => result))
+    deleteTarjeta(id: string, idTarjeta: string): Observable<string>{
+        return this.#http.delete<string>(`${this.#tarjetasUrl}/${id}/tarjeta/${idTarjeta}/deleteTarjeta`).pipe(map((result) => result))
     }
 
-    cambiarTarjetaDeLista(id: string, tarjeta: Tarjeta): Observable<Tarjeta>{
+    dropTarjetaDeLista(id: string, tarjeta: Tarjeta): Observable<Tarjeta>{
         return this.#http.post<Tarjeta>(`${this.#tarjetasUrl}/${id}/nuevaTarjetaLista`, tarjeta).pipe(map((result) => result))
     }
-    borrarTarjetaDeLista(id: string, indice: number): Observable<Tarjeta[]>{
+    dragTarjetaDeLista(id: string, indice: number): Observable<Tarjeta[]>{
         return this.#http.delete<Tarjeta[]>(`${this.#tarjetasUrl}/${id}/tarjetaDelete/${indice}`).pipe(map((result) => result))
     }
 

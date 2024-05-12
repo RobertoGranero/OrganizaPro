@@ -3,11 +3,15 @@
 <main>
   <div class="container">
     <div class="row">
-      <section class="col-md-3 infoEspacio">
+      <section class="col-md-3 col-12">
 
-        <div class="d-flex align-items-start d-none d-md-block">
-          <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+        <div class="d-flex align-items-start d-md-block justify-content-center">
+          <div class="nav flex-md-column flex-sm-row nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+            <button class="nav-link active" id="v-pills-invitado-tab" data-bs-toggle="pill" data-bs-target="#v-pills-invitado"
+              type="button" role="tab" aria-controls="v-pills-invitado" aria-selected="true">Espacios de trabajos (Invitado)</button>
+
+            <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
               type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Tableros</button>
               
             <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
@@ -18,7 +22,7 @@
 
         <hr>
 
-        <div ngbAccordion [closeOthers]="true">
+        <div ngbAccordion [closeOthers]="true" class="infoEspacio" autoanimate>
           @for (workSpace of workSpace(); track workSpace._id) {
             <div ngbAccordionItem >
               <h2 ngbAccordionHeader>
@@ -29,7 +33,6 @@
                   <ng-template>
                     <ul>
                       <li><a [routerLink]="['/work-space/' + workSpace._id]">Tableros</a></li>
-                      <li><a >Editar espacio de trabajo</a></li>
                       <li><a (click)="addMiembros(workSpace._id!, workSpace)">Añadir miembros</a></li>
                     </ul>
                   </ng-template>
@@ -42,16 +45,39 @@
 
       <section class="col-md-9">
         <div class="tab-content" id="v-pills-tabContent">
-          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <div class="tab-pane fade show active" id="v-pills-invitado" role="tabpanel" aria-labelledby="v-pills-invitado-tab">
+            <h3>Espacios de trabajo donde estas de miembro
+              @if (workSpaceMiembros()) {
+              ({{workSpaceMiembros().length}})
+              }
+            </h3>            
+            <div class="row gy-2" autoanimate>
+              @if (workSpaceMiembros().length > 0) {
+      
+                  @for (workSpaceMiembro of workSpaceMiembros(); track workSpaceMiembro.creadoPor) {
+                    <div class="col-12 col-sm-4">
+                      <div class="card noInserta" [routerLink]="['/work-space/' + workSpaceMiembro._id]">
+                        <div class="card-body ">
+                          <p class="card-title">{{workSpaceMiembro.titulo}}</p>
+                        </div>
+                      </div>
+                    </div>
+      
+                  }
+                }
+
+            </div>
+          </div>
+          <div class="tab-pane fade show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <h3>Tableros creados recientemente</h3>
-            <div class="row gy-2">
+            <div class="row gy-2" autoanimate>
               @if (tableros()) {
                 @for (tablero of tableros(); track $index) {
                   @if (creadoEstaSemana(tablero.fecha!)) {
-                  <div class="col-4">
-                    <div class="card noInserta colorCard" [ngStyle]="{'background-color': tablero.colorTablero}">
+                  <div class="col-12 col-sm-4">
+                    <div class="card noInserta colorCard" [ngStyle]="{'background-color': tablero.colorTablero}" [routerLink]="['/boards/',tablero._id]">
                       <div class="card-body ">
-                        <p class="card-title">{{tablero.titulo}}</p>
+                        <p class="card-title" [ngStyle]="{'color': estaOscuro(tablero.colorTablero) ? 'white' : 'black'}">{{tablero.titulo}}</p>
                       </div>
                     </div>
                   </div>
@@ -63,11 +89,11 @@
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
             <h3>Espacios de trabajo creados recientemente</h3>
-            <div class="row gy-2">
+            <div class="row gy-2" autoanimate>
               @if (workSpace()) {
                 @for (workSpace of workSpace(); track $index) {
                   @if (creadoEstaSemana(workSpace.fecha!)) {
-                  <div class="col-4">
+                  <div class="col-12 col-sm-4">
                     <div class="card noInserta" [routerLink]="['/work-space/' + workSpace._id]">
                       <div class="card-body ">
                         <p class="card-title">{{workSpace.titulo}}</p>
@@ -77,25 +103,20 @@
                   }
                   }
               }
-
-
             </div>
           </div>
-          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...
-          </div>
-          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...
-          </div>
 
-          <h3 class="mt-5">Tus espacios de trabajo
+        <div class="containerEspaciosTrabajo">
+          <h3>Tus espacios de trabajo
             @if (workSpace()) {
             ({{workSpace().length}})
             }
           </h3>
 
           @if (workSpace()) {
-          <div class="overflow-auto scroll">
+          <div class="overflow-auto scroll" autoanimate>
             @for (workSpace of workSpace(); track workSpace.creadoPor) {
-            <div class="d-flex">
+            <div class="d-flex" >
               <div class="workSpaceCard w-100" [routerLink]="['/work-space/' + workSpace._id]">
                 <div class="d-flex justify-content-between align-items-center mt-1">
                   <p class="card-title ms-3 mt-2">{{workSpace.titulo}}</p>
@@ -111,35 +132,7 @@
           </div>
           }
 
-          @if (workSpaceMiembros().length > 0) {
-
-          <h3 class="mt-5">Espacios de trabajo donde estas de miembro
-            @if (workSpaceMiembros()) {
-            ({{workSpaceMiembros().length}})
-            }
-          </h3>
-
-          <div class="overflow-auto scroll">
-
-            @for (workSpaceMiembro of workSpaceMiembros(); track workSpaceMiembro.creadoPor) {
-            <div class="d-flex">
-              <div class="workSpaceCard w-100 mb-3" [routerLink]="['/work-space/' + workSpaceMiembro._id]">
-                <div class="d-flex justify-content-between align-items-center">
-                  <p class="card-title ms-3 mt-2">{{workSpaceMiembro.titulo}}</p>
-                  <span class="me-5 mt-2">{{workSpaceMiembro.fecha | date: "MM/dd/yyyy, h:mm a"}}</span>
-                </div>
-              </div>
-              <div>
-                <button type="button" class="btn btnDelete" (click)="deleteWorkSpace(workSpaceMiembro)">X</button>
-
-              </div>
-            </div>
-
-            }
-          </div>
-          }
-
-
+        </div>
           <div class="row mt-5">
             <div class="col-12 text-center">
               <textarea [(ngModel)]="texto" (keydown.enter)="onEnterPressed($event)"
@@ -150,6 +143,9 @@
       </section>
 
     </div>
+  </div>
+
+  <div class="imagenDeco">
   </div>
 
 </main>

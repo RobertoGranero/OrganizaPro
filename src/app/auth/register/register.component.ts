@@ -70,12 +70,12 @@ export class RegisterComponent implements OnInit, OnDestroy{
         };
 
         this.#authService.userRegister(userRegister).subscribe({
-        next: () => {
-            this.#router.navigate(['/work-space'])
-        },
-        error: (err) => {
-            console.log(err);
-        },
+            next: () => {
+                this.#router.navigate(['/work-space'])
+            },
+            error: (err) => {
+                console.log(err);
+            },
         });
     }
 

@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit, OnDestroy {
                 setTimeout(() => {
                     this.show = false;
                 }, 5000);
-                console.log(err);
             },
         });
     }

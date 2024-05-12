@@ -22,7 +22,6 @@ export class boardsService {
         return this.#http.get<Tablero>(`${this.#tablerosUrl}/${id}` ).pipe(map((result) => result))
     }
     postTablero(tableroInfo: Tablero): Observable<Tablero>{
-        console.log(tableroInfo)
         return this.#http.post<Tablero>(`${this.#tablerosUrl}`, tableroInfo).pipe(map((result) => result))
 
     }

@@ -15,6 +15,8 @@
     border-radius: 50%;
     background: #f9c947;
     transition: all 0.2s ease;
+    animation: shake-left-right 1.8s forwards
+
 }
 
 .sectionChatBot.show-chatbot .chatbot-toggler {
@@ -189,11 +191,12 @@ a {
     visibility: visible;
 }
 
-.enviar-btn{
+.enviar-btn {
     background-color: #1abc9c;
     color: black;
     border: 0;
 }
+
 @media (max-width: 490px) {
     .chatbot-toggler {
         right: 20px;
@@ -219,5 +222,39 @@ a {
 
     .chatbot header span {
         display: block;
+    }
+}
+
+
+@keyframes shake-left-right {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+        transform-origin: 50% 50%
+    }
+
+    10% {
+        transform: rotate(8deg)
+    }
+
+    20%,
+    40%,
+    60% {
+        transform: rotate(-10deg)
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: rotate(10deg)
+    }
+
+    80% {
+        transform: rotate(-8deg)
+    }
+
+    90% {
+        transform: rotate(8deg)
     }
 }

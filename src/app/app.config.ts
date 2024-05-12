@@ -11,7 +11,7 @@ import { provideGoogleId } from './google-login/google-login.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes, withComponentInputBinding(), withPreloading(PreloadAllModules), withViewTransitions()),
-    provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor, authInterceptor])), provideClientHydration(), provideAnimationsAsync(),
+    provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor, authInterceptor])), provideClientHydration(), provideAnimationsAsync(), 
     provideGoogleId('918915279081-4vdi1aklj6567m4qjt1is4c6opfjchm3.apps.googleusercontent.com')
 
   ]

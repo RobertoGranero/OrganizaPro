@@ -18,6 +18,9 @@ export class listService {
     postListas(infoLista: Lista): Observable<Lista>{
         return this.#http.post<Lista>(`${this.#listasUrl}`, infoLista).pipe(map((result) => result))
     }
+    deleteLista(idLista: string): Observable<Lista> {
+        return this.#http.delete<Lista>(`${this.#listasUrl}/${idLista}` ).pipe(map((result) => result))
+    }
 
     putTituloLista(id: string, editLista: string): Observable<void>{
         const tituloInfo = {

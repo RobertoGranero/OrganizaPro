@@ -107,11 +107,7 @@ textarea:focus {
 
 }
 
-@media (max-height: 885px) {
-    main {
-        height: auto;
-    }
-}
+
 
 
 .arribaDerecha{
@@ -120,4 +116,14 @@ textarea:focus {
     top: 10px;
     right: 10px;
     padding: 5px;
+}
+
+.borrarCuenta{
+    color: red;
+    font-weight: 200;
+    text-decoration: none;
+}
+
+.borrarCuenta:hover{
+    text-decoration: underline;
 }

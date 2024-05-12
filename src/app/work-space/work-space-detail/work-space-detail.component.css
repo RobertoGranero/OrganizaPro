@@ -1,12 +1,12 @@
 * {
     font-family: "Kanit", sans-serif;
-    color: white;
+    color: #E5E9EB;
 }
 
 main {
     padding-top: 6%;
     height: 100vh;
-    background-color: #2b3d4f;
+    background-color: #080B0C;
 }
 
 hr {
@@ -32,7 +32,26 @@ select {
     width: 240px;
 }
 
+.inputLista {
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    font-size: 18px;
+    width: 160px;
+}
 
+.inputLista:focus {
+    border: 0;
+    border-bottom: 1px solid white;
+}
+
+.iconPencil {
+    border: 0;
+    background-color: #2b3d4f;
+    border-radius: 4px;
+    color: black;
+    height: min-content;
+    padding: 0 5px 0 5px;
+}
 
 input:focus {
     outline: none;
@@ -106,14 +125,15 @@ input:focus {
 }
 
 
-fa-icon{
+fa-icon {
     transition: all 0.2s ease-in-out;
 
 }
 
-fa-icon:hover{
+fa-icon:hover {
     transform: scale(1.1);
 }
+
 .noInserta p {
     color: black;
 
@@ -123,7 +143,62 @@ fa-icon:hover{
     cursor: pointer;
 }
 
-.card-body form input{
+.card-body form input {
     border: 0;
     color: black;
+}
+
+
+
+@media (max-width: 945px) {
+    main {
+        padding-top: 9%;
+    }
+}
+@media (max-width: 800px) {
+    main {
+        padding-top: 12%;
+    }
+}
+@media (max-width: 667px) {
+    main{
+      height: 120vh;
+    }
+    .infoEspacio{
+        width: auto;
+    }
+    .invitaMiembros{
+        width: auto;
+    }
+  }
+@media (max-width: 450px) {
+    main {
+        padding-top: 20%;
+        height: auto;
+    }
+
+    #search {
+        width: 50px;
+    }
+}
+
+@media (max-width: 575px) {
+    .rowInfoEspacio{
+        margin: 0;
+    }
+    .infoEspacio{
+        width: auto;
+    }
+    .invitaMiembros{
+        width: auto;
+    }
+    .btn{
+        padding-right: 0;
+    }
+    .btn-ordenar {
+        width: 300px;
+    }
+    #search {
+        width: 300px;
+    }
 }

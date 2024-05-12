@@ -7,3 +7,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: white;
     text-decoration: none;
 }
+
+.fc .fc-list-event:hover td{
+    background-color: #6a7a8085 !important;
+}
+
+.fc-list-day-cushion a{
+    color: #080B0C;
+    text-decoration: none;
+}
+.modal-content{
+    background-color: rgba(240, 248, 255, 0);
+    border: 0;
+}
