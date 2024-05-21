@@ -126,9 +126,19 @@ export class DetailTarjetaModalComponent implements OnInit{
 
         this.#tarjetaService.postCheckListTarjeta(this.idLista!, checkListInfo, this.tarjeta?._id!).subscribe({
             next: (resp) => {
-                this.tarjeta = resp;
+                const respTarjeta = resp.checkList?.find((tarea) => tarea.usuario === this.usuario.value && tarea.titulo === this.titulo.value)
+                this.tarjeta?.checkList?.push(respTarjeta!)
                 this.formCheckList.reset()
                 this.showCheckList = false;
+
+            }
+        })
+    }
+
+    deleteCheckList(idCheckList: string){
+        this.#tarjetaService.deleteCheckListTarjeta(this.idLista!, this.tarjeta?._id!, idCheckList).subscribe({
+            next: (resp) => {
+                this.tarjeta?.checkList?.splice(+resp, 1)
             }
         })
     }
@@ -191,7 +201,7 @@ export class DetailTarjetaModalComponent implements OnInit{
         this.#tarjetaService.addComentarios(this.idLista!, comentarioInfo, this.tarjeta?._id!).subscribe({
             next: (resp) => {
                 this.tarjeta?.comentarios?.push(comentarioInfo)
-
+  
                 this.formComentario.reset()
             }
         })

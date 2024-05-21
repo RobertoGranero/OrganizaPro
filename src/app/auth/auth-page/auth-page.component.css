@@ -4,12 +4,12 @@
 
 
 main {
-    background-color:hsla(36,0%,100%,1);
+    background-color:hsla(0,0%,100%,1);
     background-image:
-    radial-gradient(at 82% 22%, hsla(359,89%,85%,0.3) 0px, transparent 50%),
-    radial-gradient(at 21% 78%, hsla(122,82%,76%,0.3) 0px, transparent 50%),
-    radial-gradient(at 82% 79%, hsla(195,74%,77%,0.3) 0px, transparent 50%),
-    radial-gradient(at 22% 22%, hsla(266,100%,86%,0.3) 0px, transparent 50%);
+    radial-gradient(at 79% 76%, hsla(233,100%,50%,0.26) 0px, transparent 50%),
+    radial-gradient(at 27% 23%, hsla(310,91%,68%,0.29) 0px, transparent 50%),
+    radial-gradient(at 80% 24%, hsla(359,100%,50%,0.26) 0px, transparent 50%),
+    radial-gradient(at 24% 71%, hsla(122,100%,50%,0.26) 0px, transparent 50%);
     height: 100vh;
 }
 

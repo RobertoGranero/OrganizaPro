@@ -5,21 +5,38 @@
     width: 100%;
 }
 
-.modal-header{
-    background-color: #2b3d4f;
-    color: white;
-}
-.modal-body{
-    background-color: #2b3d4f;
+.modal-body, .modal-header, .modal-footer{
+    background-color: #E5E9EB;
+    border-radius: 0;
 
 }
+
+ul{
+    border-bottom: 1px solid black;
+}
+
+li button.active{
+    background-color: #334155;
+    color: white;
+    border-bottom: 1px solid black;
+}
+li button{
+    color: black;
+}
+li button:hover{
+    background-color: #33415565;
+    border-bottom: 1px solid black;
+
+}
+
 .btn-close{
     background-color: white;
 }
 .card{
-    background-color: #1e3750;
-    color: white;
+    background-color: #F5F5F5;
+    color: black;
 }
 .btn{
-    background-color: #7EFFAC;
+    background-color: #357ABD;
+    color: #dbdbdb;
 }

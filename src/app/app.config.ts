@@ -10,7 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideGoogleId } from './google-login/google-login.config';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes, withComponentInputBinding(), withPreloading(PreloadAllModules), withViewTransitions()),
+  providers: [provideRouter(routes, withComponentInputBinding(), withPreloading(PreloadAllModules)),
     provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor, authInterceptor])), provideClientHydration(), provideAnimationsAsync(), 
     provideGoogleId('918915279081-4vdi1aklj6567m4qjt1is4c6opfjchm3.apps.googleusercontent.com')
 

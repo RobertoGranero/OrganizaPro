@@ -26,8 +26,11 @@ export class tarjetaService {
         return this.#http.delete<Tarjeta[]>(`${this.#tarjetasUrl}/${id}/tarjetaDelete/${indice}`).pipe(map((result) => result))
     }
 
-    postCheckListTarjeta(id: string, checkList: Tarjeta, idTarjeta: string): Observable<CheckList>{
-        return this.#http.post<CheckList>(`${this.#tarjetasUrl}/${id}/checkList/${idTarjeta}`, checkList).pipe(map((result) => result))
+    postCheckListTarjeta(id: string, checkList: Tarjeta, idTarjeta: string): Observable<Tarjeta>{
+        return this.#http.post<Tarjeta>(`${this.#tarjetasUrl}/${id}/checkList/${idTarjeta}`, checkList).pipe(map((result) => result))
+    }
+    deleteCheckListTarjeta(id: string, idTarjeta: string, idCheckList: string): Observable<String>{
+        return this.#http.delete<String>(`${this.#tarjetasUrl}/${id}/checkList/${idTarjeta}/${idCheckList}`).pipe(map((result) => result))
     }
 
     getCheckListDelUsuario(idUsuario: string): Observable<CheckList[]>{

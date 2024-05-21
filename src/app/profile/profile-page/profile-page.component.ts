@@ -12,6 +12,7 @@ import {
 import { NgbModal, NgbNavModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../auth/services/auth.service';
 import { ConfirmModalComponent } from '../../modals/confirm-modal/confirm-modal.component';
+import { matchPassword } from '../../validators/matchPassword.validator';
 
 @Component({
     selector: 'profile-page',
@@ -33,9 +34,10 @@ export class ProfilePageComponent implements OnInit {
     #profileService = inject(ProfileService);
     #authService = inject(AuthService);
     @Input() id!: string;
-    user!: User;
+    user?: User;
     #fb = inject(NonNullableFormBuilder);
     #modalService = inject(NgbModal);
+    toastText: string = "";
 
     avatarPerfil: string = "";
     nombre = this.#fb.control('', [Validators.required, Validators.email]);
@@ -51,9 +53,10 @@ export class ProfilePageComponent implements OnInit {
 
 
     password = this.#fb.control('', [Validators.required]);
+    rePassword = this.#fb.control('', [Validators.required, matchPassword(this.password)]);
     formEditPassword = this.#fb.group({
         password: this.password,
-
+        rePassword: this.rePassword
     });
     show = false;
 
@@ -80,10 +83,11 @@ export class ProfilePageComponent implements OnInit {
             ...this.formEditProfile.getRawValue()
         }
 
-        this.#profileService.updateProfile(this.user._id!, infoEditProfile).subscribe({
+        this.#profileService.updateProfile(this.user?._id!, infoEditProfile).subscribe({
             next: (value) => {
                 this.user = value;
                 this.show = true;
+                this.toastText = "Has cambiado correctamente los datos"
                 setTimeout(() =>{
                     this.show = false;
 
@@ -97,8 +101,14 @@ export class ProfilePageComponent implements OnInit {
             ...this.formEditPassword.getRawValue()
         }
 
-        this.#profileService.updatePassword(this.user._id!, infoEditPassword).subscribe({
+        this.#profileService.updatePassword(this.user?._id!, infoEditPassword).subscribe({
             next: (value) => {
+                this.show = true;
+                this.toastText = "Has cambiado correctamente la contraseña"
+                setTimeout(() =>{
+                    this.show = false;
+
+                },4000)
             }
         })
     }
@@ -112,8 +122,16 @@ export class ProfilePageComponent implements OnInit {
         reader.readAsDataURL(fileInput.files[0]);
         reader.addEventListener('loadend', () => {
             const avatarPerfilString = reader.result as string;
-            this.#profileService.updateAvatar(this.user._id!, avatarPerfilString).subscribe({
+            this.#profileService.updateAvatar(this.user?._id!, avatarPerfilString).subscribe({
                 next: () => {
+                    this.user!.avatar = avatarPerfilString
+                    this.show = true;
+                    this.toastText = "Has cambiado correctamente el avatar"
+
+                    setTimeout(() =>{
+                        this.show = false;
+    
+                    },4000)
                 }
             });
         });

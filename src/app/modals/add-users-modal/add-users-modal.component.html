@@ -1,43 +1,85 @@
 <div class="modal-header">
-    <h4 class="modal-title">Añadir usuarios al espacio de trabajo</h4>
+    <h4 class="modal-title">Miembros en el espacio de trabajo</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
 </div>
 <!--     [formGroup]="formAddWorkSpace" (submit)="addWorkSpace()"
  -->
 <div class="modal-body">
-    <form class="formSearch">
-        <input type="search" [ngModel]="search()" (ngModelChange)="search.set($event)" name="search" id="search" placeholder="Buscar usuario"><br>
-    </form>
 
-    <hr>
-    @for (usuario of filteredUsarios(); track $index) {
+    <ul ngbNav #nav="ngbNav" [animation]="false" class="nav-tabs d-flex justify-content-center">
+        <li [ngbNavItem]="1">
+            <button ngbNavLink>Invitar</button>
+            <ng-template ngbNavContent>
 
-        @if (comprobarUsuarios(usuario)) {
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <ngx-avatars name="{{usuario.nombre}} {{usuario.apellidos}}" bgColor="#7EFFAC" fgColor="black"
-                                id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
-                        </div>
-                        <div class="col-5">
+                <form class="formSearch mb-2">
+                    <input type="search" [ngModel]="search()" (ngModelChange)="search.set($event)" name="search"
+                        id="search" placeholder="Buscar usuario"><br>
+                </form>
+
+                @for (usuario of filteredUsarios(); track $index) {
+
+                    @if (comprobarUsuarios(usuario)) {
+                    <div class="card mb-3">
+                        <div class="card-body">
                             <div class="row">
-                                <p class="m-0">{{usuario.email}}</p>
-                            </div>
-                            <div class="row">
-                                <p class="m-0">{{usuario.nombre}} {{usuario.apellidos}}</p>
-                            </div>
-                        </div>
+                                <div class="col-2">
+                                    <ngx-avatars name="{{usuario.nombre}} {{usuario.apellidos}}" bgColor="#7EFFAC"
+                                        fgColor="black" id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <p class="m-0">{{usuario.email}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="m-0">{{usuario.nombre}} {{usuario.apellidos}}</p>
+                                    </div>
+                                </div>
 
-                        <div class="col-5 ">
-                            <button class="btn mt-2 mx-5" (click)="addUsers(usuario)">Invitar</button>
+                                <div class="col-5 ">
+                                    <button class="btn mt-2 mx-5" (click)="addUsers(usuario)">Invitar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        }
+                    }
 
-    }
+                }
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <button ngbNavLink>Miembros</button>
+            <ng-template ngbNavContent>
+                @for (miembro of miembros(); track $index) {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <ngx-avatars name="{{miembro.nombre}} {{miembro.apellidos}}" bgColor="#7EFFAC"
+                                        fgColor="black" id="dropdownBasic2" ngbDropdownToggle></ngx-avatars>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <p class="m-0">{{miembro.email}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="m-0">{{miembro.nombre}} {{miembro.apellidos}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </ng-template>
+        </li>
+
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+
+
+
 
 
 

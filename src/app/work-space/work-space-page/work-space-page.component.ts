@@ -12,6 +12,8 @@ import { ChatHelpComponent } from '../../chatHelp/chat-help/chat-help.component'
 import { Tablero } from '../../interfaces/tablero-interfaces';
 import { AddUsersModalComponent } from '../../modals/add-users-modal/add-users-modal.component';
 import { AutoanimateDirective } from '../../autoanimate.directive';
+import { faRobot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -27,7 +29,7 @@ import { AutoanimateDirective } from '../../autoanimate.directive';
         FormsModule,
         ChatHelpComponent,
         NgbAccordionModule,
-        AutoanimateDirective
+        AutoanimateDirective,
     ],
     templateUrl: './work-space-page.component.html',
     styleUrl: './work-space-page.component.css',
@@ -42,6 +44,7 @@ export class WorkSpacePageComponent implements OnInit{
     workSpaceMiembros: WritableSignal<WorkSpace[]> = signal([]);
     tableros: WritableSignal<Tablero[]> = signal([]);
     texto = "";
+
 
     ngOnInit(): void {
         this.#UsersService.getUsuarioLogueado().subscribe({

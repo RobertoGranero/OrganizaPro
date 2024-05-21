@@ -34,19 +34,21 @@ export class CalendarPageComponent implements OnInit{
     #tarjetaService = inject(tarjetaService)
 
     ngOnInit(): void {
-        this.#tarjetaService.getCheckListDelUsuario(this.id).subscribe({
-            next: (resp) => {
-                const events = resp.map((resultado) => ({
-                    title: resultado.titulo,
-                    start: resultado.fechaInicio,
-                    end: resultado.fechaFin,
-                    id: resultado._id
-                }));
-                this.calendarOptions.events = events;
+            this.#tarjetaService.getCheckListDelUsuario(this.id).subscribe({
+                next: (resp) => {
+                    const events = resp.map((resultado) => ({
+                        title: resultado.titulo,
+                        start: resultado.fechaInicio,
+                        end: resultado.fechaFin,
+                        id: resultado._id
+                    }));
+                    this.calendarOptions.events = events;
+    
+    
+                },
+                
+            })
 
-
-            }
-        })
 
     }
 

@@ -4,16 +4,15 @@
 }
 
 main{
-  margin-top: 40px;
-  padding-top: 90px;
-  height: 120vh;
+  padding-top: 130px;
+  height: 110vh;
   max-height: auto;
-  background-color: #080B0C;
+  background-color: var(--color-bg);
 }
 
 @media (max-width: 945px) {
   main{
-    padding-top: 9%;
+    padding-top: 130px;
   }
 }
 
@@ -24,63 +23,69 @@ main{
   }
 }
 
-@media (max-width: 450px) {
-  main{
-    padding-top: 13%;
-  }
-}
 
 @media (max-width: 667px) {
   main{
     height: 120vh;
+
   }
 }
 
 
 #v-pills-tab button.active{
-  background-color: hsl(203, 37%, 28%, 30%);
+  background-color: #4A90E2;
   color: #E5E9EB;
 }
 
 #v-pills-tab button{
-  color: #E5E9EB;
+  color: var(--color-text);
 }
 
 .accordion-body a, .accordion-button{
-  background-color: #080B0C;
-  color: #E5E9EB;
+  background-color: #E0E0E0;
+  color: #4A4A4A;
 
 }
 .accordion-item{
-  background-color: #080B0C;
-  border: 1px solid #E5E9EB;
+  background-color: #E0E0E0;
+  border: 1px solid #4A4A4A;
 
-  color: #E5E9EB;
+  color: #4A4A4A;
 }
 
 .noInserta:not(.colorCard){
   border: 2px solid #fcffea;
-  background-color: #212d3a;
-  color: white;
+  background-color: #4A90E2;
+  font-size: 16px;
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.226);
+  transition: all 0.3s;
 }
 
 .noInserta:hover:not(.colorCard){
-  background-color: #fcffea;
-  color: #212d3a;
+  background-color: #357ABD ;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #FFFFFF ;
   cursor: pointer;
-  border: 2px solid #212d3a;
 
 }
 .colorCard{
-  border: 1px solid black;
+  border: 2px solid #fcffea;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.226);
+  transition: all 0.3s;
+
+
 }
 .colorCard:hover{
   cursor: pointer;
-  border: 1px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 .containerEspaciosTrabajo{
-  border: 1px solid white;
+  border: 1px solid  var(--color-text);
+  background-color: var(--color-bg-workSpace) ;
   padding: 45px;
   border-radius: 15px;
   margin-top: 80px;
@@ -88,28 +93,33 @@ main{
 
 .workSpaceCard{
   height: 50px;
-  border-bottom: 2px solid #fcffea;
+  border-bottom: 2px solid #E0E0E0 ;
   transition: all 0.3s;
-  color: #fcffea;
+  font-size: 16px;
+  color: var(--color-text);
 }
 
 .workSpaceCard:hover{
   cursor: pointer;
   background-color: hsl(203, 37%, 28%, 20%);
-  color: #E5E9EB;
+  color: var(--color-text);
   border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btnDelete{
-  color: #fcffea;
-  border-left: 2px solid #fcffea;
-  border-bottom: 2px solid #fcffea;
+  color: #FF6B6B;
+  border-left: 2px solid #E0E0E0;
+  border-bottom: 2px solid #E0E0E0;
   height: 50px;
   border-radius: 0px;
 }
 
 .btnDelete:hover{
-  background-color: #fcffea48;
+  color: #FF4D4D ;
+  background-color: hsl(203, 37%, 28%, 20%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .scroll{
@@ -117,25 +127,50 @@ main{
   max-height: 350px;
 }
 
-h5, h3{
-  color: #E5E9EB;
+.scroll::-webkit-scrollbar{
+  margin-left:5px ;
+  width: 8px;
+
+}
+.scroll::-webkit-scrollbar-track{
+  background:transparent;
+
+}
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #232d30fd;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.tab-pane h3{
+  color: var(--color-text);
   font-weight: 400;
   font-size: 22px;
 }
 
+h3{
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: 22px;
+}
 
 textarea{
-  border: 1px solid white;
-  border-radius: 5px;
-  background-color: hsl(203, 37%, 28%, 30%);
-  color: #E5E9EB;
+  border: 1px solid  var(--color-text);
+  border-radius: 4px;
+  background-color: var(--color-bg-workSpace) ;
+  color: var(--color-text) ;
   resize: none;
   text-align: center;
-  width: 25em;
+  width: 100%;
+}
+
+textarea:focus{
+  border: 1px solid #4A90E2;
+  outline: none;
 }
 
 textarea::placeholder{
-  color: #E5E9EB;
+  color: var(--color-text);
   text-align: center;
 }
 

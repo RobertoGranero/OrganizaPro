@@ -4,14 +4,17 @@
 }
 
 main {
-    padding-top: 6%;
-    height: 100vh;
-    background-color: #080B0C;
+    padding-top: 150px;
+    height: 110vh;
+
+    background-color: var(--color-bg);
 }
 
 hr {
     margin-left: 10%;
     margin-right: 10%;
+    color: var(--color-text);
+
 }
 
 
@@ -37,6 +40,17 @@ select {
     border: 0;
     font-size: 18px;
     width: 160px;
+    color:  var(--color-text);
+
+}
+
+.text-start {
+    color: var(--color-text);
+
+}
+
+h5 {
+    color: var(--color-text);
 }
 
 .inputLista:focus {
@@ -46,11 +60,15 @@ select {
 
 .iconPencil {
     border: 0;
-    background-color: #2b3d4f;
     border-radius: 4px;
     color: black;
     height: min-content;
     padding: 0 5px 0 5px;
+    background-color: var(--color-bg);
+}
+
+.iconPencil fa-icon{
+    color: var(--color-text);
 }
 
 input:focus {
@@ -108,15 +126,48 @@ input:focus {
     box-shadow: none;
 }
 
+#search {
+    width: 100%;
+    max-width: 250px;
+    height: 45px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid lightgrey;
+    background-color: #ffffff;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.11);
+}
+
+#search:focus {
+    border: 2px solid grey;
+    color: black;
+
+}
+#search:active {
+    transform: scale(0.95);
+
+}
+
+#search:hover {
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 20px -17px;
+}
+
 .insertaTablero {
     height: 120px;
     background-color: #212d3a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.774);
+
 }
+
+
 
 .noInserta {
     height: 120px;
     opacity: 1;
     transition: opacity 0.4s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.774);
 
 }
 
@@ -143,39 +194,24 @@ fa-icon:hover {
     cursor: pointer;
 }
 
-.card-body form input {
-    border: 0;
-    color: black;
-}
 
 
 
-@media (max-width: 945px) {
-    main {
-        padding-top: 9%;
-    }
-}
-@media (max-width: 800px) {
-    main {
-        padding-top: 12%;
-    }
-}
+
 @media (max-width: 667px) {
-    main{
-      height: 120vh;
-    }
-    .infoEspacio{
+
+
+    .infoEspacio {
         width: auto;
     }
-    .invitaMiembros{
+
+    .invitaMiembros {
         width: auto;
     }
-  }
+}
+
 @media (max-width: 450px) {
-    main {
-        padding-top: 20%;
-        height: auto;
-    }
+
 
     #search {
         width: 50px;
@@ -183,21 +219,26 @@ fa-icon:hover {
 }
 
 @media (max-width: 575px) {
-    .rowInfoEspacio{
+    .rowInfoEspacio {
         margin: 0;
     }
-    .infoEspacio{
+
+    .infoEspacio {
         width: auto;
     }
-    .invitaMiembros{
+
+    .invitaMiembros {
         width: auto;
     }
-    .btn{
+
+    .btn {
         padding-right: 0;
     }
+
     .btn-ordenar {
         width: 300px;
     }
+
     #search {
         width: 300px;
     }

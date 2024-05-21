@@ -4,9 +4,23 @@
 
 .modal-body, .modal-header, .modal-footer{
     background-color: #E5E9EB;
+    border-radius: 0;
 }
 
 .modal-body input{
     background-color: #E5E9EB;
     border: 1px solid #080B0C;
+}
+
+.btn{
+    width: 30%;
+    border: 1px solid #080B0C;
+}
+
+.btn-crear{
+    background-color: #579DFF;
+}
+.btn-crear:hover{
+    background-color: #3c8bfa;
+
 }

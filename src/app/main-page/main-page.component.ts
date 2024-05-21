@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -15,7 +15,6 @@ import 'atropos/css';
 })
 export class MainPageComponent implements AfterViewInit, OnInit {
     icons = { faGoogle, faXTwitter, faFacebook, faInstagram}
-
     ngOnInit(): void {
 
     }
@@ -29,4 +28,5 @@ export class MainPageComponent implements AfterViewInit, OnInit {
         });
 
     }
+
 }

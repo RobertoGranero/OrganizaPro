@@ -5,18 +5,19 @@ import {
     ReactiveFormsModule,
     Validators,
 } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { Tablero } from '../../interfaces/tablero-interfaces';
 import { UsersService } from '../../users/users.service';
 import { User } from '../../auth/interfaces/user';
 import { AvatarModule } from 'ngx-avatars';
 import { WorkSpace, miembros } from '../../work-space/interfaces/work-space-interfaces';
+import { WorkSpaceService } from '../../work-space/services/work-space.service';
 
 @Component({
     selector: 'add-users-modal',
     standalone: true,
-    imports: [ReactiveFormsModule, FormsModule, AvatarModule],
+    imports: [ReactiveFormsModule, FormsModule, AvatarModule, NgbNavModule],
     templateUrl: './add-users-modal.component.html',
     styleUrl: './add-users-modal.component.css',
 })
@@ -24,15 +25,17 @@ export class AddUsersModalComponent implements OnInit{
 
 
     #userService = inject(UsersService);
+    #espacioTrabajoService = inject(WorkSpaceService);
     activeModal = inject(NgbActiveModal);
     @Input() idUser!: string;
     @Input() idEspacioTrabajo!: string;
     @Input() espacioDeTrabajo!: WorkSpace;
     usuarios: WritableSignal<User[]> = signal([]);
-    miembros!: User;
+    miembros: WritableSignal<User[]> = signal([]);
     search = signal('');
     ngOnInit(): void {
         this.getUsuarios()
+        this.miembrosEspacioDeTrabajo()
     }
 
     filteredUsarios = computed(() =>
@@ -57,9 +60,28 @@ export class AddUsersModalComponent implements OnInit{
         this.#userService.invitarUsuarioEspacioTrabajo(this.idEspacioTrabajo, usuario._id!).subscribe({
             next:(result) => {
                 this.espacioDeTrabajo.miembros = result.miembros
+                this.miembros().push(usuario)
             }
         })
         
+    }
+
+    miembrosEspacioDeTrabajo(){
+        this.#espacioTrabajoService.getEspaciosDeTrabajoDetalle(this.idEspacioTrabajo!).subscribe({
+            next: (resp) => {
+                this.#userService.getUsuarios().subscribe({
+                    next: (usuario) =>{
+                        const usuarioCreador = usuario.find((user) => user._id === resp.creadoPor);
+                        this.miembros().push(usuarioCreador!)
+
+                        resp.miembros?.forEach((miembro) => {
+                            const usuariosMiembros = usuario.find((user) => user._id === miembro.usuario);
+                            this.miembros().push(usuariosMiembros!)
+                        })
+                    }
+                })
+            }
+        })
     }
 
     comprobarUsuarios(usuario: User) : boolean{

@@ -1,9 +1,12 @@
 <top-menu></top-menu>
 
 <main>
-  <full-calendar class="calendar" [options]="calendarOptions">
-    <ng-template #eventContent let-arg>
-      <i>{{arg.event.title}}</i>
-    </ng-template>
-  </full-calendar>
+  @if (id) {
+    <full-calendar class="calendar" [options]="calendarOptions">
+      <ng-template #eventContent let-arg>
+        <i>{{arg.event.title}}</i>
+      </ng-template>
+    </full-calendar>
+  }
+
 </main>

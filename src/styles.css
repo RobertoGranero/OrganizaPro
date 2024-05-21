@@ -3,8 +3,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.modal {
+    height: 100vh;
+}
+
 .calendar .fc-scrollgrid-sync-inner a{
-    color: white;
+    color: var(--color-text);
     text-decoration: none;
 }
 
@@ -19,4 +23,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .modal-content{
     background-color: rgba(240, 248, 255, 0);
     border: 0;
+}
+
+:root{
+    --color-bg-workSpace: #F5F5F5;
+    --color-bg: #F0F4F8;
+    --color-text: #4A4A4A;
+}
+
+[data-theme="dark"]{
+    --color-bg: #334155;
+    --color-bg-workSpace: #1E293B;
+    --color-text: #E5E9EB;
 }

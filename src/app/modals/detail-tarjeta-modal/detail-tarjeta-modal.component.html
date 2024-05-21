@@ -41,8 +41,8 @@
                         <option value="Baja">Baja</option>
                         <option value="Ninguna">Ninguna</option>
                     </select>
-                    <div class="d-flex justify-content-between">
-                        <button>Guardar</button>
+                    <div class="d-flex justify-content-around">
+                        <button type="submit" class="btn-save">Guardar</button>
                         <button (click)="showTarjetaEdit = true">Cancelar</button>
                     </div>
 
@@ -81,6 +81,7 @@
                                 [icon]="icons.faCheckSolid"></fa-icon></button>
                         }
 
+                        <button class="btn" (click)="deleteCheckList(checkList._id!)">X</button>
                     </div>
 
                 </div>
@@ -116,8 +117,8 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-between">
-                        <button type="submit">Añadir un checkList</button>
+                    <div class="d-flex justify-content-around">
+                        <button type="submit" class="btn-save">Añadir un checkList</button>
                         <button (click)="showCheckList = false">Cancelar</button>
                     </div>
 

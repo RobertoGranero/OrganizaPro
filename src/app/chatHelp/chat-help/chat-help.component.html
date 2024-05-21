@@ -1,7 +1,7 @@
 <section class="sectionChatBot d-none d-sm-block" [ngClass]="{'show-chatbot': showChatBot}">
     <button class="chatbot-toggler" (click)="showChatBot = !showChatBot">
-        <span class="material-symbols-rounded">Open</span>
-        <span class="material-symbols-outlined">close</span>
+        <span class="material-symbols-rounded"><fa-icon [icon]="icons.faRobot"></fa-icon></span>
+        <span class="material-symbols-outlined"><fa-icon [icon]="icons.faRobot"></fa-icon></span>
     </button>
     <div class="chatbot">
         <header>

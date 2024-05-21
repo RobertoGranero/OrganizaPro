@@ -1,7 +1,7 @@
 main {
-    padding-top: 6%;
-    height: 100vh;
-    background-color: #2b3d4f;
+    padding-top: 140px;
+    height: 110vh;
+    background-color: var(--color-bg);
 }
 
 
@@ -21,8 +21,8 @@ input[type="file"] {
 }
 
 .btn-avatar {
-    color: black;
-    font-weight: 500;
+    color: white;
+    font-weight: 400;
     background-color: #457AE5;
     border: 0;
     border-radius: 6px;
@@ -32,8 +32,8 @@ input[type="file"] {
 }
 
 li button{
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
 }
 li button:hover:not(li button.active){
     background-color: #797c7ea8;
@@ -48,7 +48,7 @@ form textarea {
     padding: 10px;
     height: 100px;
     resize: none;
-    color: white;
+    color: var(--color-text);
 
 }
 
@@ -58,25 +58,30 @@ form input {
     background-color: rgba(0, 0, 0, 0);
     border-radius: 12px;
     padding: 10px;
-    color: white;
+    color: var(--color-text);
 
 }
 
 form input:focus,
 textarea:focus {
     outline: none;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
 }
 
 .btn-submit {
-    background-color: #457AE5;
+    background-color: #224faf;
     border: 0;
     border-radius: 6px;
-    color: black;
+    color: white;
     padding: 8px 50px 8px 50px;
     font-size: 18px;
     font-weight: 500;
+
+}
+
+.btn-submit:disabled{
+    background-color: #224fafa6;
 
 }
 
@@ -84,7 +89,6 @@ textarea:focus {
     .margin-container {
         margin-left: 20%;
         margin-right: 20%;
-        margin-top: 5%;
 
     }
 }
@@ -93,7 +97,6 @@ textarea:focus {
     .margin-container {
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: 5%;
     }
 }
 
@@ -101,17 +104,20 @@ textarea:focus {
     .margin-container {
         margin-left: 10px;
         margin-right: 10px;
-        margin-top: 15%;
 
     }
 
+}
+
+label{
+    color: var(--color-text);
 }
 
 
 
 
 .arribaDerecha{
-    margin-top: 40px;
+    margin-top: 80px;
     position: fixed;
     top: 10px;
     right: 10px;

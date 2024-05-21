@@ -20,11 +20,14 @@ export const routes: Routes = [
     {
         path: 'timer', canActivate: [loginActivateGuard],
         loadComponent: () => import('./timer-page/timer-page.component').then((m) => m.TimerPageComponent),
+        data: { animation: 'timerPage'}
 
     },
     {
         path: 'calendario/:id',
         loadComponent: () => import('./calendar-page/calendar-page.component').then((m) => m.CalendarPageComponent),
+        data: { animation: 'calendarPage'}
+
     },
     {
         path: 'boards', canActivate: [loginActivateGuard],
@@ -35,6 +38,7 @@ export const routes: Routes = [
         path: 'profile', canActivate: [loginActivateGuard],
         loadChildren: () =>
         import('./profile/routes').then((m) => m.profileRoutes),
+        data: { animation: 'profilePage'}
     },
     { path: '**', redirectTo: '' },
 ];

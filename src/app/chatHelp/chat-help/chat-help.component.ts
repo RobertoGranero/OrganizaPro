@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faRobot } from '@fortawesome/free-solid-svg-icons';
 import { AvatarModule } from 'ngx-avatars';
 
 @Component({
     selector: 'chat-help',
     standalone: true,
-    imports: [CommonModule, AvatarModule, FormsModule],
+    imports: [CommonModule, AvatarModule, FormsModule, FontAwesomeModule],
     templateUrl: './chat-help.component.html',
     styleUrl: './chat-help.component.css',
 })
@@ -14,6 +16,8 @@ export class ChatHelpComponent {
     showChatBot: boolean = false;
     opcionSeleccionada: string = '';
     resultadoOpcionSeleccionada: string = '';
+    icons = { faRobot }
+
     respuestas: {[key: string]: string}= {
         default: 'Elige una opcion',
         espacio: 'El espacio de trabajo es el centro de navegación de su equipo, donde puede encontrar y compartir cualquier tablero y colaborar fácilmente.',
