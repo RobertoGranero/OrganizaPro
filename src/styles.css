@@ -20,13 +20,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: #080B0C;
     text-decoration: none;
 }
+.fc-col-header-cell{
+    background-color: orange;
+}
+.fc-col-header-cell-cushion{
+    font-size: 20px;
+}
 .modal-content{
     background-color: rgba(240, 248, 255, 0);
     border: 0;
 }
 
 :root{
-    --color-bg-workSpace: #F5F5F5;
+    --color-bg-workSpace: white;
     --color-bg: #F0F4F8;
     --color-text: #4A4A4A;
 }

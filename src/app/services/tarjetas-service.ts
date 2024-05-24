@@ -63,10 +63,5 @@ export class tarjetaService {
         return this.#http.post<Comentarios>(`${this.#tarjetasUrl}/${id}/comentarios/${idTarjeta}`, comentario).pipe(map((result) => result))
     }
 
-/*     checkTarea(id: string, idTarjeta: string, idCheckList: string, check: boolean): Observable<CheckList>{
-        const checkJson = {
-            check: check
-        }
-        return this.#http.post<CheckList>(`${this.#tarjetasUrl}/${id}/checkList/${idTarjeta}/estaHecho/${idCheckList}`, checkJson).pipe(map((result) => result))
-    } */
+
 }

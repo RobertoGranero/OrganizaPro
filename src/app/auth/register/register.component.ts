@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgZone, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, NgZone, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User, UserLogin } from '../interfaces/user';
@@ -74,7 +74,11 @@ export class RegisterComponent implements OnInit, OnDestroy{
                 this.#router.navigate(['/work-space'])
             },
             error: (err) => {
-                console.log(err);
+                this.show = true;
+                setTimeout(() =>{
+                    this.show = false;
+
+                },4000)
             },
         });
     }

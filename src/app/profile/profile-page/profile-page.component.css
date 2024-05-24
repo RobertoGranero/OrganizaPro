@@ -111,10 +111,8 @@ textarea:focus {
 
 label{
     color: var(--color-text);
+    font-weight: bold;
 }
-
-
-
 
 .arribaDerecha{
     margin-top: 80px;

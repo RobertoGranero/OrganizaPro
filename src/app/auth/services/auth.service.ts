@@ -86,7 +86,8 @@ export class AuthService {
     logout(): void {
         this.cookieService.delete('token')
         this.#logged.set(false);
-        this.#router.navigate(['/']);
+        location.reload()
+
     }
 
     deleteAccount(id: string) {
@@ -95,7 +96,7 @@ export class AuthService {
             .pipe(map((result) => {
                 this.cookieService.delete('token');
                 this.#logged.set(false);
-                this.#router.navigate(['/']);
+                location.reload()
                 return result
             }));
     }

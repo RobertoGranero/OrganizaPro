@@ -190,7 +190,6 @@ export class BoardComponent implements OnInit {
             return;
         }
         const draggedObject = this.listas()[this.indexLista!].tarjetas[this.indexTarjeta];
-        console.log(draggedObject)
 
         this.#tarjetaService.deleteTarjeta(this.listas()[this.indexLista!]._id!, draggedObject._id!).subscribe({
             next: () => {
@@ -204,7 +203,6 @@ export class BoardComponent implements OnInit {
     }
 
     putTituloLista(idLista: string){
-        console.log(this.tituloLista.nativeElement.value)
 
         this.#listaService.putTituloLista(idLista, this.tituloLista.nativeElement.value).subscribe({
             next: (resp) => {

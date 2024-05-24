@@ -14,6 +14,9 @@
             <a class="nav-link mx-lg-2 active" aria-current="page" href="#inicio">Inicio</a>
           </li>
           <li class="nav-item menuLinks">
+            <a class="nav-link mx-lg-2" href="#elementoDeTrabajo">Elementos de trabajo</a>
+          </li>
+          <li class="nav-item menuLinks">
             <a class="nav-link mx-lg-2" href="#flujoDeTrabajo">Flujo de trabajo</a>
           </li>
           <li class="nav-item menuLinks">
@@ -71,7 +74,49 @@
       conectar las tareas y los flujos de trabajo con los objetivos de toda la empresa.</p>
   </section>
 
+  <section class="informacionSection" id="elementoDeTrabajo">
+    <div class="containerTitulo">
+      <h3>Elementos de OrganizaPro</h3>
+    </div>
+
+    <div class="container containerInformacion">
+      <article>
+        <div><fa-icon [icon]="icons.faDesktop"></fa-icon></div>
+        <div>
+          <h4>Espacios de trabajos</h4>
+          <p>Un espacio de trabajo es un entorni digital donde tú y tu equipo pueden colaborar de manera efectivia en diversos proyectos. Cada espacio de trabajo puede incluir múltiples tableros, cada uno destinado a un proyecto o área específica de tur organización. Esta estructura flexible te permite mantener todo organizado y accesible</p>  
+        </div>
+      </article>
+      <article>
+        <div><fa-icon [icon]="icons.faChessBoard"></fa-icon></div>
+        <div>
+          <h4>Tableros</h4>
+          <p>Los tableros son el núclero de tu espacio de trabajo, permitiéndote organizar y visualizar proyectos de manera intuitiva. Cada tablero está compuesto por listas y tarjetas que dividen el trabajo en tareas manejables, adaptándose a cualquier flujo de trabajo y facilitando la colaboración en equipo. Con una interfaz clara, los tableros te mantienen enfocado y al tanto del progreso de tus proyectos</p>
+        </div>
+      </article>
+      <article>
+        <div><fa-icon [icon]="icons.faList"></fa-icon></div>
+        <div>
+          <h4>Listas</h4>
+          <p>Las listas organizan las tarjetas dentro de los tableros, representando diferentes etapas del flujo de trabajo, como "Por hacer", "En progreso" y "Hecho". Ayudan a estructurar y visualizar el progreso de un proyecto, permitiendo mover tarjetas de una lista a otra según avanza el trabajo. Las listas facilitan la gestión y priorización de tareas de manera clara y ordenada.</p>
+        </div>
+      </article>
+      <article>
+        <div><fa-icon [icon]="icons.faClipboardList"></fa-icon></div>
+        <div>
+          <h4>Tarjetas</h4>
+          <p>Las tarjetas son los elementos básicos dentro de los tableros, utilizadas para representar tareas individuales o ítems de trabajo. Cada tarjeta puede contener descripciones, checklists, archivos adjuntos y comentarios, proporcionando todos los detalles necesarios para completar una tarea específica. Con una interfaz intuitiva, las tarjetas facilitan el seguimiento del progreso y la colaboración en tiempo real.</p>
+        </div>
+      </article>
+    </div>
+    <div class="franjaSeparacion"></div>
+  </section>
+
   <section class="sectionFlujo " id="flujoDeTrabajo">
+    <div class="containerTitulo">
+      <h3>Flujo de trabajo</h3>
+    </div>
+
     <div class="containerFlujo">
       <div class="row mb-3 g-4">
         <div class="col-12 col-md-5 col-lg-3 gestionProyectos me-3">
@@ -123,13 +168,20 @@
         </div>
       </div>
     </div>
+    <div class="franjaSeparacion"></div>
+
   </section>
 
-  <section class="precios-section">
-    <h2>Convierte en <span class="gradient-text">miembro de OrganizaPro</span></h2>
-    <p>
-      El precio de cada plan represetan un pago por año.
-    </p>
+ 
+
+  <section class="precios-section" id="precios">
+    <div class="containerTituloPrecios">
+      <h2>Convierte en <span class="gradient-text">miembro de OrganizaPro</span></h2>
+      <p>
+        El precio de cada plan represetan un pago por año.
+      </p>
+    </div>
+
     <div class="pricing-container">
       <article class="pricing-card pricing-card--primary">
         <img
@@ -252,6 +304,8 @@
         </ul>
       </article>
     </div>
+    <div class="franjaSeparacion"></div>
+
   </section>
 
   <section id="contact">
@@ -288,7 +342,9 @@
         </div>
       </div>
     </div>
+
   </section>
+  <div class="franjaSeparacion footerSeparacion"></div>
 
 </main>
 
