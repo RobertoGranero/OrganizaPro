@@ -23,11 +23,15 @@ main {
 li button.active{
     background-color: #1c2229;
     color: white;
+    border: 1px solid black;
+
 }
 
 li button{
     border: 1px solid black;
-    color: black;
+    color: white;
+    background-color: #39445273;
+
 }
 
 li button:hover:not(li button.active){

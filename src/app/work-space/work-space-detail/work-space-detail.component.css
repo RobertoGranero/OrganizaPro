@@ -94,6 +94,11 @@ input:focus {
     background-color: #7effac;
     color: black;
     font-size: 0.95rem;
+    box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+
+}
+.btn:hover{
+    box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
 }
 
 .btn-ordenar {
@@ -193,9 +198,6 @@ fa-icon:hover {
 .card:hover {
     cursor: pointer;
 }
-
-
-
 
 
 @media (max-width: 667px) {

@@ -28,8 +28,17 @@
                     </div>
                     <button type="submit" class="btn btn-success enviar-btn mt-2">Enviar</button>
                 </form>
-                <span class="ms-3"><ngx-avatars name="AA" bgColor="#7EFFAC" fgColor="ffff" size="35" id="dropdownBasic1"
-                    ngbDropdownToggle></ngx-avatars></span>
+                @if (user) {
+                    @if (user.avatar) {
+                      <ngx-avatars src="{{user.avatar}}" [round]="true" size="35" id="dropdownBasic1" 
+                      ngbDropdownToggle></ngx-avatars>
+                    }
+                    @else {
+                        <span class="ms-3"><ngx-avatars name="{{user.nombre}} {{user.apellidos}}" bgColor="#7EFFAC" fgColor="ffff" size="35" id="dropdownBasic1"
+                            ngbDropdownToggle></ngx-avatars></span>
+                    }
+                  }
+
             </li>
             <li [ngClass]="{'chat': mostrarRespuesta, 'incoming': mostrarRespuesta, 'd-none': !mostrarRespuesta}">
                 <span class="material-symbols-outlined">IA</span>

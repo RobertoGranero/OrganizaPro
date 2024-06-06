@@ -4,7 +4,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faUsersRectangle } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faClockRotateLeft } from '@fortawesome/free-solid-svg-icons';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-regular-svg-icons';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
@@ -50,6 +50,8 @@ export class TopMenuComponent implements OnInit, OnChanges{
         faCalendar,
         faGear,
         faArrowRightFromBracket,
+        faMoon,
+        faSun
     };
     user?: User;
 
@@ -58,6 +60,7 @@ export class TopMenuComponent implements OnInit, OnChanges{
     cookieService = inject(SsrCookieService);
     darkmode = false;
     logged = computed(() => this.#authService.logged());
+
     ngOnInit(): void {
         this.darkmode = sessionStorage.getItem('data-theme') === 'dark' ? true : false;
         document.documentElement.setAttribute('data-theme', sessionStorage.getItem('data-theme')!)

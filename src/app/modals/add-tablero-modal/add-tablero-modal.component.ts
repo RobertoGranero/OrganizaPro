@@ -27,7 +27,7 @@ export class AddTableroModalComponent {
     #fb = inject(NonNullableFormBuilder);
 
     titulo = this.#fb.control('', [Validators.required]);
-    colorTablero = this.#fb.control('', [Validators.required]);
+    colorTablero = this.#fb.control('#000000', [Validators.required]);
     formAddTablero = this.#fb.group({
         titulo: this.titulo,
         colorTablero: this.colorTablero,

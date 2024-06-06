@@ -33,8 +33,10 @@ main{
 
 
 #v-pills-tab button.active{
-  background-color: #4A90E2;
-  color: #E5E9EB;
+  /* background-color: #4A90E2;
+  color: #E5E9EB; */
+  background-color: #738bff;
+  color: white;
 }
 
 #v-pills-tab button{

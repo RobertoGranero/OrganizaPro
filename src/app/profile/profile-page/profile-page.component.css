@@ -31,13 +31,14 @@ input[type="file"] {
     cursor: pointer;
 }
 
-li button{
+li button.active{
     border: 1px solid var(--color-text);
     color: var(--color-text);
+    background-color: var(--color-bg);
 }
-li button:hover:not(li button.active){
-    background-color: #797c7ea8;
-    color: white;
+
+li button{
+    color: var(--color-text);
 }
 
 form textarea {
@@ -70,7 +71,7 @@ textarea:focus {
 }
 
 .btn-submit {
-    background-color: #224faf;
+    background-color: #738bff;
     border: 0;
     border-radius: 6px;
     color: white;
@@ -81,7 +82,7 @@ textarea:focus {
 }
 
 .btn-submit:disabled{
-    background-color: #224fafa6;
+    background-color: #92a4ff;
 
 }
 

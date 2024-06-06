@@ -26,11 +26,18 @@
 
         </ul>
         <div class="d-flex align-items-center">
+
           <label class="switch me-5">
+            Tema
             <input type="checkbox" (click)="changeTheme()" [(ngModel)]="darkmode">
-            <span class="slider"></span>
-          </label>
-  
+            @if (darkmode) {
+              <fa-icon [icon]="icons.faSun"></fa-icon>
+            }
+            @else {
+              <fa-icon [icon]="icons.faMoon"></fa-icon>
+            }
+          </label> 
+
           <div ngbDropdown class="d-inline-block">
   
             <div class="avatarIcon">
