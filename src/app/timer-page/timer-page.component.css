@@ -15,7 +15,7 @@ main {
 .content {
     width: 50rem;
     height: auto;
-    border-radius: 1.5rem;
+    border-radius: 1.6rem;
     margin: 0 auto;
     padding: 2rem;
     background: #1e293b;
@@ -120,5 +120,68 @@ main {
 
     60% {
         transform: translateY(-25px);
+    }
+}
+
+@keyframes move_timer {
+    20%,
+    50%,
+    80% {
+        transform: translateY(0px);
+    }
+    30% {
+        transform: translateY(-45px);
+    }
+    60% {
+        transform: translateY(-25px);
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 30px;
+    }
+    .content .content-timer .content-h,
+    .content-m,
+    .content-s {
+        width: 14rem;
+        height: 8rem;
+    }
+    .time {
+        font-size: 100px;
+    }
+    .content-btn-action button {
+        font-size: 3rem;
+        width: 6rem;
+        height: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 0.4rem;
+    }
+    .content .content-timer .content-h,
+    .content-m,
+    .content-s {
+        width: 100%;
+        height: 4rem;
+    }
+    .time {
+        font-size: 40px;
+        width: 90px;
+    }
+    
+    .time span{
+        font-size: 40px;
+    }
+    .content-btn button {
+        font-size: 40px;
+        width: 3rem;
+    }
+    .content-btn-action button {
+        font-size: 2.5rem;
+        width: 3.7rem;
+        height: 1.5rem;
     }
 }

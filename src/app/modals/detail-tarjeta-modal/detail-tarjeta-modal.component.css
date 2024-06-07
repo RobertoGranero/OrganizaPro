@@ -49,9 +49,16 @@ form button:not(.cancelarBtn, .enviarComment){
     color: white;
 }
 .checkList{
-    background-color: #080B0C;
+    background-color: #f2f4f5;
     border-radius: 10px;
     text-align: center;
+    border: 1px solid #53677e;
+
+}
+
+.paddingCheckList{
+    padding-top: 6px;
+    padding-left: 12px;
 }
 
 .btn-show{
@@ -94,11 +101,10 @@ form button:not(.cancelarBtn, .enviarComment){
 
 fa-icon{
     padding: 15px;
-
 }
 
 .iconCheck{
-    color: white;
+    color: black;
 }
 
 ngb-progressbar{
@@ -125,6 +131,12 @@ ngb-progressbar{
 }
 .prioridadNinguna{
     background-color: #FFFFFF;
+}
+
+.scrollComments{
+    height: auto;
+    max-height: 320px;
+    overflow-y: auto;
 }
 
 .contenedorBoton{

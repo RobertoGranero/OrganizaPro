@@ -10,6 +10,7 @@ import { User } from '../../auth/interfaces/user';
 import { AvatarModule } from 'ngx-avatars';
 import { ProfileService } from '../../profile/services/profile.service';
 import { faPaperPlane, faCircleExclamation, faSquareCheck as faCheckSolid } from '@fortawesome/free-solid-svg-icons';
+import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import { faSquareCheck } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -38,11 +39,11 @@ export class DetailTarjetaModalComponent implements OnInit{
     mediaProgressbar: number = 0;
     usuarioLogueado!: User;
     #fb = inject(NonNullableFormBuilder);
-    icons = { faPaperPlane, faCircleExclamation, faSquareCheck, faCheckSolid }
+    icons = { faPaperPlane, faCircleExclamation, faSquareCheck, faCheckSolid, faSquare }
 
     valorPredeterminado: string = "";
     titulo = this.#fb.control('', [Validators.required]);
-    usuario = this.#fb.control("",);
+    usuario = this.#fb.control('',);
     fechaInicio = this.#fb.control('',);
     fechaFin = this.#fb.control('',);
     formCheckList = this.#fb.group({
@@ -198,13 +199,16 @@ export class DetailTarjetaModalComponent implements OnInit{
             usuario: this.usuarioLogueado
         }
 
-        this.#tarjetaService.addComentarios(this.idLista!, comentarioInfo, this.tarjeta?._id!).subscribe({
-            next: (resp) => {
-                this.tarjeta?.comentarios?.push(comentarioInfo)
-  
-                this.formComentario.reset()
-            }
-        })
+        if(this.contenido.value !== ''){
+            this.#tarjetaService.addComentarios(this.idLista!, comentarioInfo, this.tarjeta?._id!).subscribe({
+                next: (resp) => {
+                    this.tarjeta?.comentarios?.push(comentarioInfo)
+      
+                    this.formComentario.reset()
+                }
+            })
+        }
+
     }
 
     deleteTarjeta(){

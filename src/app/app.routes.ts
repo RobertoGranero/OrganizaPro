@@ -24,7 +24,7 @@ export const routes: Routes = [
 
     },
     {
-        path: 'calendario/:id',
+        path: 'calendario/:id', canActivate: [loginActivateGuard],
         loadComponent: () => import('./calendar-page/calendar-page.component').then((m) => m.CalendarPageComponent),
         data: { animation: 'calendarPage'}
 

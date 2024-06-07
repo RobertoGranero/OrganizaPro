@@ -17,7 +17,7 @@
       <div class="d-flex justify-content-between mb-2">
         <input type="text" class="inputLista" value="{{lista.titulo}}" #tituloLista>
         <button (click)="putTituloLista(lista._id!)" class="iconPencil" placement="top"
-          ngbTooltip="Edita el titulo"><fa-icon [icon]="icons.faPencil"></fa-icon></button>
+          ngbTooltip="Edita el titulo y haz click aqui para guardar"><fa-icon [icon]="icons.faPencil"></fa-icon></button>
         <button class="iconDeleteLista" (click)="deleteLista(lista._id!)"><fa-icon
             [icon]="icons.faCircleXmark"></fa-icon></button>
       </div>
@@ -40,7 +40,7 @@
             {{tarjeta.prioridad}}
           </div>
 
-          <div>
+          <div [ngClass]="{'bgEstaHecho': tarjeta.lengthEstaHecho === tarjeta.checkList?.length && tarjeta.checkList?.length !== 0}">
             {{tarjeta.lengthEstaHecho}}/{{tarjeta.checkList?.length}} <fa-icon [icon]="icons.faListCheck"></fa-icon>
           </div>
           <div class="me-2">

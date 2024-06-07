@@ -123,7 +123,7 @@ h4 {
     background-color: rgba(255, 255, 255, 0);
     border: 0;
     font-size: 18px;
-    width: 160px;
+    width: 150px;
 }
 .btn-lista, .btn-lista-cancelar{
     border: 1px solid black;
@@ -308,4 +308,11 @@ h4 {
 .button:hover .bin-top {
     transition-duration: 0.5s;
     transform: rotate(160deg);
+}
+
+.bgEstaHecho{
+    background-color: #11d611;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 5px;
 }
