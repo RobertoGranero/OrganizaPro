@@ -5,7 +5,7 @@
 
 main{
   padding-top: 130px;
-  height: 110vh;
+  height: 115vh;
   max-height: auto;
   background-color: var(--color-bg);
 }
